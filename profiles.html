@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Profiles</title>
+    <link rel="stylesheet" href="profilesCSS.css">
+</head>
+<body>
+    <!-- Button to open the sidebar -->
+    <button class="openbtn">☰ Options</button>
+
+    <div id="mySidepanel" class="sidepanel">
+        <a href="javascript:void(0)" class="closebtn">x</a>
+        <a href="main.html">Home</a>
+        <a href="booksHTML.html">Your books</a>
+        <a href="javascript:void(0)" onclick="toggleSubmenu('characterarchiveSubmenu')">Character Archive</a>
+        <div id="characterarchiveSubmenu" class="submenu">
+           <!----<a href="profiles.html">Profiles</a>-->
+        </div>
+       <!---- <a href="sublinks.html">Sublinks</a> -->
+    </div>
+    
+    <button id="showProfileFormBtn">Create Profile</button>
+    
+    <div id="characterProfiles">
+        <div id="profileFormContainer" class="modal-box">
+            <div class="modal-content">
+                <h2>Create Character Profile</h2>
+                <div class="profile-form">
+                    <input type="text" name="profileTitle" id="profileTitle" placeholder="Character Name">
+                    <div class="image-upload">
+                        <input type="file" id="imageUpload" accept="image/*">
+                        <img id="imagePreview" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
+                    </div>
+                    <p class="upload">Upload Image (max. 5MB)</p>
+                    <textarea id="profileContent" rows="10" placeholder="Describe your character"></textarea>
+                    <button id="createProfileBtn">Create Profile</button>
+                    <button id="closeProfileFormBtn">Close</button>
+                </div>
+            </div>
+        </div>
+        <div id="profileContainer">
+        </div>
+    </div>
+
+    <script src="profilesJS.js"></script>
+</body>
+</html>

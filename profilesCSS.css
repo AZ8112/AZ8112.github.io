@@ -1,0 +1,218 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: blueviolet;
+}
+
+#showProfileFormBtn {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 15px;
+    background-color: #5500ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#showProfileFormBtn:hover {
+    opacity: 0.8;
+}
+
+/* Character profiles container */
+#characterProfiles {
+    margin-top: 80px;
+}
+
+.modal-box {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(167, 118, 235, 0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: rgb(72, 5, 123);
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    color: white;
+}
+
+#closeProfileFormBtn {
+    background-color: #DC3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#profileTitle, #profileContent {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    width: 100%;
+}
+
+.image-upload {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}
+
+#imageUpload {
+    display: none;
+}
+
+#imagePreview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid #332b45;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+#profileContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+    margin-top: 20px;
+}
+
+.profile-card {
+    border: 1px solid #847d95;
+    border-radius: 5px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #6855ad;
+    height: 350px;
+}
+
+.profile-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile-card .profile-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.profile-card .profile-description {
+    font-size: 0.9em;
+    color: #000;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-btn, .delete-btn {
+    background-color: indigo;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: #DC3545;
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    padding: 10px 15px;
+    background-color: indigo;
+    color: lavender;
+    border: none;
+}
+
+.openbtn:hover {
+    background-color: grey;
+}
+
+/* Sidebar styles */
+.sidepanel {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: darkslateblue;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #000000;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidepanel a:hover {
+    color: grey;
+}
+
+.sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.submenu {
+    display: none;
+    padding-left: 20px;
+}
+
+.submenu a {
+    font-size: 20px; 
+    color: black; 
+}
+
+.submenu a:hover {
+    color: grey; 
+}
+
+.sidepanel a:hover { 
+    color: grey;
+}

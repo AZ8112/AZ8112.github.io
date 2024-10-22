@@ -1,0 +1,112 @@
+/* Adjust the layout of sublinks */
+#sublinkList {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping when more sublinks are added */
+    justify-content: flex-start; /* Align items to the left */
+    gap: 10px; /* Space between items */
+    margin-top: 20px;
+}
+
+#sublinkList li {
+    list-style-type: none;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 18px;
+    color: black;
+    width: 150px; /* Set a fixed width for each sublink item */
+    text-align: center;
+}
+
+#sublinkList li:hover {
+    background-color: lightgrey;
+}
+
+/* General styles */
+body {
+    background-color: blueviolet;
+    font-family: Arial, sans-serif;
+}
+
+/* Title styling */
+.title {
+    display: flex;
+    flex-direction: column;
+    background-color: blueviolet;
+    font-family: 'komika font', Times, serif;
+    color: black;
+    text-align: center;
+}
+
+/* Sidebar styles */
+.sidepanel {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: darkslateblue;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+.sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidepanel a:hover {
+    color: grey;
+}
+
+.submenu {
+    display: none;
+    padding-left: 20px;
+}
+
+.submenu a {
+    font-size: 20px;
+    color: black;
+}
+
+.submenu a:hover {
+    color: grey;
+}
+
+.sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.openbtn {
+    font-size: 20px;
+    font-family: fantasy;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    padding: 10px 15px;
+    background-color: indigo;
+    color: lavender;
+    border: #111;
+}
+
+.openbtn:hover {
+    background-color: grey;
+}
+
+.linked-word:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}
