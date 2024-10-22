@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter Creator</title>
+    <link rel="stylesheet" href="chaptersCSS.css">
+    <!-- Quill's core CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <!-- Quill's core JavaScript -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+</head>
+<body>
+
+<!-- Sidebar -->
+<div id="mySidepanel" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+    <a href="booksHTML.html">Your books</a>
+    <div id="booksSubmenu" class="submenu">
+        <!-- Books will be dynamically added here -->
+    </div>
+    <a href="javascript:void(0)" onclick="toggleSubmenu('characterarchiveSubmenu')">Character Archive</a>
+    <div id="characterarchiveSubmenu" class="submenu">
+        <a href="profiles.html">Profiles</a>
+    </div>
+    <!--<a href="sublinks.html">Sublinks</a> -->
+</div>
+<!-- Open button -->
+<button class="openbtn" onclick="openNav()">☰ Options</button>
+
+<!-- Adding chapter form -->
+<h1 id="header"></h1>
+<div class="add-chapter-form">
+    <input type="text" name="chapterTitle" id="chapterTitle" placeholder="Chapter Title">
+    <div id="chapterContent" style="height: 300px;"></div>
+    <button onclick="addChapter()">Create Chapter</button>
+    <button id="updateButton" onclick="updateChapter()" style="display:none;">Update Chapter</button>
+</div>
+
+<!-- Chapter list -->
+<div class="chapter-list" id="chapterList">
+    <!-- Chapters will be added here -->
+</div>
+
+<!-- Sublink Popup -->
+<div id="sublinkPopup" style="display: none; position: fixed; z-index: 100; left: 50%; top: 50%; transform: translate(-50%, -50%); background-color: white; border: 2px solid #dcb6e4; padding: 20px; border-radius: 10px;">
+    <h2>Create Sublink for <span id="selectedWord"></span></h2>
+    <input type="text" id="sublinkTitle" placeholder="Sublink Title">
+    <textarea id="sublinkContent" placeholder="Sublink Content" rows="5"></textarea>
+    <button onclick="saveSublink()">Create Sublink</button>
+    <button onclick="closeSublinkPopup()">Cancel</button>
+</div>
+
+
+
+
+<script src="chaptersJS.js"></script>
+<script src="sublinksJS.js"></script> <!-- Added the sidebar JS -->
+</body>
+</html>

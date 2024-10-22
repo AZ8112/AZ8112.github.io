@@ -1,0 +1,109 @@
+body {
+    background-image: url('homepage_final4.png');
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+     /* Keeps the image fixed while scrolling */
+    background-size: cover;
+
+  }
+
+.title {
+    
+    display: flex;
+    flex-direction: column ;
+    background-color: blueviolet;
+    font-family: 'komika font', Times, serif;
+    color: black;
+}
+
+
+h1 { text-align: center;}
+
+.sidepanel {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: darkslateblue;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+
+
+}
+
+.sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+}
+
+.submenu {
+    display: none; 
+    padding-left: 20px; 
+}
+
+.submenu a {
+    font-size: 20px; 
+    color: black; 
+}
+
+.submenu a:hover {
+    color: grey; 
+}
+
+.sidepanel a:hover { 
+    color: grey;
+}
+
+.sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.openbtn {
+    font-size: 20px;
+    font-family: fantasy;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    padding: 10px 15px;
+    background-color: indigo;
+    color: lavender;
+    border: #111;
+}
+
+.openbtn:hover {
+    background-color: grey;
+} 
+
+#defaultBook {
+    display: block;
+    margin: 10px 0;
+    padding: 5px;
+    font-size: 18px;
+    width: calc(100% - 64px);
+}
+
+button {
+    display: block;
+    margin: 10px 0;
+    padding: 5px 10px;
+    font-size: 18px;
+    background-color: indigo;
+    color: lavender;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: grey;
+}

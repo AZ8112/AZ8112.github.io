@@ -1,0 +1,228 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 20px;
+}
+
+/* Sidebar styles */
+.sidepanel {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: darkslateblue;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+.sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidepanel a:hover {
+    color: grey;
+}
+
+.sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.openbtn {
+    font-size: 20px;
+    font-family: fantasy;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    padding: 10px 15px;
+    background-color: indigo;
+    color: lavender;
+    border: #111;
+}
+
+.openbtn:hover {
+    background-color: grey;
+}
+
+.chapter-list {
+    margin-top: 20px;
+}
+
+.chapter-title {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 10px;
+    background-color: #4d046177;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.chapter-content {
+    display: none;
+    padding: 10px 10px;
+    border: 1px solid #dcb6e4;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.chapter-content p {
+    margin: 0;
+}
+
+.add-chapter-form {
+    margin-bottom: 20px;
+}
+
+.add-chapter-form input, .add-chapter-form textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #dcb6e4;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.add-chapter-form button {
+    padding: 10px 20px;
+    background-color: #3f0356;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-chapter-form button:hover {
+    background-color: #ad85c7;
+}
+
+.add-chapter-form button + button {
+    margin-left: 0px;
+}
+
+#updateButton {
+    display: none;
+}
+
+.edit-btn, .delete-btn {
+    background-color: #7b00ffee;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    background-color: #b3008c6b;
+}
+
+/* Popup Styles */
+#sublinkPopup {
+    display: none; /* Initially hidden */
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    left: 50%; /* Center the popup */
+    top: 50%; /* Center the popup */
+    transform: translate(-50%, -50%); /* Translate to center */
+    background-color: rgba(255, 255, 255, 0.9); /* Light background with transparency */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    padding: 20px; /* Inner padding */
+    width: 300px; /* Set width */
+    max-width: 90%; /* Responsive max width */
+}
+
+/* Title inside the popup */
+#sublinkTitle {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside the input */
+    margin-bottom: 10px; /* Margin below input */
+    border: 1px solid #dcb6e4; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+/* Content area inside the popup */
+#sublinkContent {
+    width: 100%; /* Full width */
+    height: 100px; /* Set a height */
+    padding: 10px; /* Padding inside textarea */
+    margin-bottom: 10px; /* Margin below textarea */
+    border: 1px solid #dcb6e4; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding in width */
+    resize: vertical; /* Allow vertical resizing */
+}
+
+/* Popup close button */
+#sublinkPopup .close-btn {
+    background-color: indigo; /* Button background color */
+    color: lavender; /* Button text color */
+    border: none; /* No border */
+    padding: 10px 15px; /* Button padding */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-top: 10px; /* Margin on top */
+}
+
+/* Hover effect for the close button */
+#sublinkPopup .close-btn:hover {
+    background-color: grey; /* Change background on hover */
+}
+
+/* Button to save the sublink */
+#sublinkPopup .save-btn {
+    background-color: #3f0356; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    padding: 10px 15px; /* Button padding */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Hover effect for the save button */
+#sublinkPopup .save-btn:hover {
+    background-color: #ad85c7; /* Change background on hover */
+}
+
+.submenu {
+    display: flex;
+    padding-left: 20px;
+}
+
+.submenu a {
+    font-size: 20px;
+    color: black;
+    text-align: left;
+}
+
+.submenu a:hover {
+    color: grey;
+}
+
+#header {
+    text-align: center;
+
+}
+
+.linked-word:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}

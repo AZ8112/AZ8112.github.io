@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sublinks Archive</title>
+    <link rel="stylesheet" href="sublinksCSS.css">
+</head>
+<body>
+
+    <h1 class="title">Sublinks Archive</h1>
+
+    <!-- Sidebar -->
+    <div id="mySidepanel" class="sidepanel">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+        <a href="main.html">Home</a>
+        <a href="booksHTML.html">Your books</a>
+        <a href="javascript:void(0)" onclick="toggleSubmenu('characterarchiveSubmenu')">Character Archive</a>
+        <div id="characterarchiveSubmenu" class="submenu">
+            <a href="profiles.html">Profiles</a>
+        </div>
+        <a href="sublinks.html">Sublinks</a> <!-- This page link -->
+    </div>
+
+    <!-- Sublinks Display Area -->
+    <div id="sublinkContainer">
+        <h2>All Sublinks</h2>
+        <ul id="sublinkList"></ul> <!-- This is where all the sublinks will be listed -->
+    </div>
+
+    <!-- Open button -->
+    <button class="openbtn" onclick="openNav()">☰ Options</button>
+
+    <!-- Edit Sublink Modal -->
+    <div id="sublinkModal" class="hidden">
+        <form id="sublinkForm">
+            <!--<label for="sublinkTitle">Title:</label>
+            <input type="text" id="sublinkTitle" name="sublinkTitle" required>
+
+            <label for="sublinkDescription">Description:</label>
+            <textarea id="sublinkDescription" name="sublinkDescription"></textarea>
+
+            <button type="submit" id="saveButton">Save Changes</button>
+            <button type="button" id="cancelSublink">Cancel</button>-->
+        </form>
+    </div>
+
+    <script src="sublinksJS.js"></script>
+</body>
+</html>

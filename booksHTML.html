@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Books</title>
+    <link rel="stylesheet" href="booksCSS.css">
+</head>
+<body>
+    <h1>Your Books</h1>
+    <button class="createbtn" onclick="createBook()">Create Book</button>
+
+    <!-- Sidebar -->
+    <div id="mySidepanel" class="sidepanel">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+        <a href="main.html">Home</a>
+        <a href="booksHTML.html">Your books</a>
+        <div id="booksSubmenu" class="submenu">
+            <!-- Books will be dynamically added here -->
+        </div>
+        <a href="javascript:void(0)" onclick="toggleSubmenu('characterarchiveSubmenu')">Character Archive</a>
+        <div id="characterarchiveSubmenu" class="submenu">
+            <a href="profiles.html">Profiles</a>
+        </div>
+       <!---- <a href="sublinks.html">Sublinks</a>-->
+    </div>
+    <!-- Open button -->
+    <button class="openbtn" onclick="openNav()">☰ Options</button>
+
+    <div id="bookList"></div>
+
+    <script src="booksJS.js"></script>
+</body>
+</html>
