@@ -10,8 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     window.createBook = function() {
-        const bookTitle = prompt('Enter the title of the book:');
-        if (bookTitle) {
+        const bookTitle = prompt('Enter the title of the book:');;
+
+         if (bookTitle) {
+
+            if (bookTitle.length > 60) {
+                alert("Title is too long; max. 60 characters");
+                bookTitle = bookTitle.substring(0, 60);
+            }
+
             // Retrieve the existing books array from localStorage
             let books = JSON.parse(localStorage.getItem('books')) || [];
 

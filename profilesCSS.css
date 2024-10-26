@@ -145,6 +145,10 @@ h2 {
     text-align: center;
     color: rgb(212, 195, 163);
     font-family: Helvetica, sans-serif;
+    white-space: nowrap;   /* Prevents text from wrapping */
+    overflow: hidden;      /* Hides overflowed text */
+    text-overflow: ellipsis; /* Adds an ellipsis (…) for overflowed text */
+    width: 100px;
 }
 
 .profile-card .profile-description {
