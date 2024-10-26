@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SecretCat society with Nori</title>
+        <link rel="stylesheet" href="CSSmain.css">
+        <link rel="icon" href="mascotlogo.png" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+<body>
+
+<div class="main-heading container">
+    <h1>Hello fellow user! <i class="fa-solid fa-pen-nib"></i></h1>
+    <p>Welcome to SecretCat society with Nori, the ultimate bookwriting tool!
+        Here you can write to your hearts content, and have everything organised 
+        in an easy-to-understand format.
+    </p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="column">
+            <h2></i>Books <i class="fa-solid fa-book"></i></i></i></h2>
+            <p>Here you can write your books chapter by chapter!
+                You can also link certain words to create a sublink to it, which then allows
+                you to explain the highlighted content.
+            </p>
+                <br>
+            <a href="booksHTML.html">Start writing</a>
+        </div>
+        <div class="column">
+            <h2>Character archive <i class="fa-solid fa-address-book"></i></h2>
+            <p>Here you can create characters that play a role in your books.
+                You can give them a profile picture and write in their backstory.
+                This helps you keep track on who is who!
+            </p>
+                <br>
+            <a href="profiles.html">Create a character</a>
+        </div>
+    </div>
+</div>
+
+      
+
+<!--Sidebar-->
+<div id="mySidepanel" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+    <a href="booksHTML.html"><i class="fa-solid fa-book"></i> Your books</a>
+    <a href="javascript:void(0)" onclick="toggleSubmenu('characterarchiveSubmenu')">Character Archive</a>
+    <div id="characterarchiveSubmenu" class="submenu">
+    <a href="profiles.html"><i class="fa-solid fa-address-book"></i> Profiles</a>
+    </div>
+    <!-- optional <a href="sublinks.html">Sublinks</a> -->
+    </div>
+
+<!--Open button-->
+<button class="openbtn" onclick="openNav()">☰</button>
+
+<script src="JavaScriptMain"></script>
+
+</body>
+</html>

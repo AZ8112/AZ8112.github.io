@@ -1,6 +1,7 @@
 body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin: 20px;
+    background-image: url('homepage_local.png');
 }
 
 /* Sidebar styles */
@@ -11,7 +12,7 @@ body {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: darkslateblue;
+    background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(31, 1, 25));
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
@@ -21,9 +22,10 @@ body {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: black;
+    color: rgb(243, 227, 239);
     display: block;
     transition: 0.3s;
+    font-family: Helvetica, sans-serif;
 }
 
 .sidepanel a:hover {
@@ -40,15 +42,18 @@ body {
 
 .openbtn {
     font-size: 20px;
-    font-family: fantasy;
     cursor: pointer;
-    position: absolute;
-    top: 5px;
-    left: 5px;
     padding: 10px 15px;
-    background-color: indigo;
+    background-color: rgba(25, 2, 31, 0.974);
     color: lavender;
-    border: #111;
+    border: none;
+    border-radius: 25% 10%;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #e20069ce;
 }
 
 .openbtn:hover {
@@ -63,9 +68,12 @@ body {
     font-weight: bold;
     cursor: pointer;
     padding: 10px 10px;
-    background-color: #4d046177;
+    background-color: #e20069ce;
     margin-bottom: 5px;
     border-radius: 5px;
+    font-family: Helvetica, sans-serif;
+    color: white;
+    border: solid, rgba(12, 0, 39, 0.753), 5px;
 }
 
 .chapter-content {
@@ -74,6 +82,7 @@ body {
     border: 1px solid #dcb6e4;
     margin-bottom: 10px;
     border-radius: 5px;
+    background-color: white;
 }
 
 .chapter-content p {
@@ -82,6 +91,8 @@ body {
 
 .add-chapter-form {
     margin-bottom: 20px;
+    background-color: white;
+    border-radius: 10px;
 }
 
 .add-chapter-form input, .add-chapter-form textarea {
@@ -94,12 +105,15 @@ body {
 }
 
 .add-chapter-form button {
-    padding: 10px 20px;
-    background-color: #3f0356;
+    padding: 10px 30px;
+    background-color: #0d0113;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    border-style: solid;
+    border-width: 5px; /*doesn't work yet*/
+    border-color: rgb(255, 255, 255);
 }
 
 .add-chapter-form button:hover {
@@ -115,16 +129,18 @@ body {
 }
 
 .edit-btn, .delete-btn {
-    background-color: #7b00ffee;
-    color: white;
+    background-color: #0a000cee;
+    color: rgb(255, 255, 255);
     padding: 5px;
-    border: none;
     border-radius: 3px;
     cursor: pointer;
     margin-top: 0px;
     margin-bottom: 10px;
     margin-right: 5px;
     display: inline-block;
+    border-style: solid;
+    border-color: #ff0a7c;;
+    border-width: 1px;
 }
 
 .edit-btn:hover,
@@ -202,13 +218,13 @@ body {
 }
 
 .submenu {
-    display: flex;
+    display: none;
     padding-left: 20px;
 }
 
 .submenu a {
     font-size: 20px;
-    color: black;
+    color: white;
     text-align: left;
 }
 
@@ -218,7 +234,8 @@ body {
 
 #header {
     text-align: center;
-
+    font-family: Helvetica, sans-serif;
+    color: rgb(243, 227, 238);
 }
 
 .linked-word:hover {
