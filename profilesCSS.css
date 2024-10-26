@@ -1,21 +1,26 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: blueviolet;
-}
+    background-image: url('homepage_local.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
 
 #showProfileFormBtn {
     position: absolute;
-    top: 20px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 10px 15px;
-    background-color: #5500ff;
+    padding: 10px 100px;
+    background-color: #e20069ce;
     color: white;
-    border: none;
     border-radius: 5px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #18011dce;
     cursor: pointer;
+    font-family: Helvetica, sans-serif;
+    font-size: 20px;
+    margin: 5px auto;
 }
 
 #showProfileFormBtn:hover {
@@ -27,6 +32,7 @@ body {
     margin-top: 80px;
 }
 
+
 .modal-box {
     display: none;
     position: fixed;
@@ -34,39 +40,44 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(167, 118, 235, 0.9);
+    background-color: rgba(26, 1, 12, 0.637);
     justify-content: center;
     align-items: center;
 }
 
 .modal-content {
-    background-color: rgb(72, 5, 123);
+    background: linear-gradient(to bottom, rgb(123, 5, 78), rgb(56, 2, 70));
     padding: 20px;
     border-radius: 5px;
     width: 80%;
+    height: 85%;
     max-width: 500px;
     margin: auto;
 }
 
 h2 {
     text-align: center;
-    color: white;
+    color: rgb(245, 231, 235);
+    font-family: Helvetica, sans-serif;
 }
 
 #closeProfileFormBtn {
-    background-color: #DC3545;
+    background-color: #1d020d;
     color: white;
     border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 2px 7px;
     cursor: pointer;
+    border-radius: 1px;
 }
 
 #profileTitle, #profileContent {
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #000;
-    width: 100%;
+    border: 1px solid #ffe600;
+    width: 95%;
+    font-family: Helvetica, sans-serif;
+    resize: none;
+    margin-top: 10px;
 }
 
 .image-upload {
@@ -74,6 +85,13 @@ h2 {
     width: 200px;
     height: 200px;
     margin: auto;
+}
+
+.image-upload, .upload {
+    color: rgba(255, 169, 194, 0.671);
+    font-family: Helvetica, sans-serif;
+    font-size: 0.8em;
+    text-align: center;
 }
 
 #imageUpload {
@@ -84,28 +102,31 @@ h2 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border: 2px solid #332b45;
+    border: 2px solid #3e0246;
     cursor: pointer;
     border-radius: 5px;
     background-color: #fff;
+    margin-top: 15px;
 }
 
 #profileContainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-gap: 20px;
-    margin-top: 20px;
+    grid-gap: 30px;
+    margin-top: 50px;
+    margin-left: 90px;
+    margin-right: 90px;
 }
 
 .profile-card {
-    border: 1px solid #847d95;
-    border-radius: 5px;
+    border: 1px solid #e70f7b;
+    border-radius: 10px;
     padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #6855ad;
-    height: 350px;
+    background: linear-gradient(to bottom, rgb(46, 3, 37), rgb(0, 0, 0));
+    height: 230px;
 }
 
 .profile-card img {
@@ -114,29 +135,37 @@ h2 {
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 10px;
+    border: 1px solid #e70f7b;
 }
 
 .profile-card .profile-name {
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: bold;
     margin-bottom: 5px;
     text-align: center;
+    color: rgb(212, 195, 163);
+    font-family: Helvetica, sans-serif;
 }
 
 .profile-card .profile-description {
     font-size: 0.9em;
-    color: #000;
+    color: rgb(226, 168, 7);
     text-align: center;
     flex-grow: 1;
+    font-family: Helvetica, sans-serif;
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    width: 130px;
 }
 
 .profile-actions {
     display: flex;
-    gap: 10px;
+    gap: 15px;
 }
 
 .edit-btn, .delete-btn {
-    background-color: indigo;
+    background-color: rgb(221, 125, 0);
     color: white;
     padding: 5px 10px;
     border: none;
@@ -145,19 +174,22 @@ h2 {
 }
 
 .delete-btn {
-    background-color: #DC3545;
+    background-color: #af2300;
 }
 
 .openbtn {
     font-size: 20px;
     cursor: pointer;
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 20px;
+    left: 20px;
     padding: 10px 15px;
-    background-color: indigo;
+    background-color: rgba(59, 3, 55, 0.974);
     color: lavender;
-    border: none;
+    border-radius: 25% 10%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #e20069ce;
 }
 
 .openbtn:hover {
@@ -172,17 +204,18 @@ h2 {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: darkslateblue;
+    background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(31, 1, 25));
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    font-family: Helvetica, sans-serif;
 }
 
 .sidepanel a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: #000000;
+    color: rgb(243, 227, 243);
     display: block;
     transition: 0.3s;
 }
@@ -206,7 +239,7 @@ h2 {
 
 .submenu a {
     font-size: 20px; 
-    color: black; 
+    color: rgb(243, 227, 243); 
 }
 
 .submenu a:hover {

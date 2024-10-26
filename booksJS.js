@@ -155,9 +155,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     loadBooks();  // Initial load of books
 
-    // Toggle submenu visibility
-    window.toggleSubmenu = function(submenuId) {
-        const submenu = document.getElementById(submenuId);
-        submenu.style.display = submenu.style.display === "block" ? "none" : "block";
-    };
+    
 });
+
+// Toggle submenu visibility
+    function toggleSubmenu(submenuId)  {
+        const submenu = document.getElementById(submenuId);
+        // Toggle visibility of the submenu
+        submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+    }
