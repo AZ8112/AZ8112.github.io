@@ -6,6 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load profiles from localStorage when the page loads
     loadProfiles();
 
+    document.getElementById("profileTitle").addEventListener("input", function () {
+        const maxLength = 40;
+        if (this.value.length > maxLength) {
+            this.value = this.value.slice(0, maxLength); // Trim excess characters
+        }
+    });
+
     // Event listener to trigger file input when image preview is clicked
     document.getElementById('imagePreview').addEventListener('click', function() {
         document.getElementById('imageUpload').click();
@@ -29,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Show the profile form when "Create Profile" button is clicked
     document.getElementById('showProfileFormBtn').addEventListener('click', function() {
+        resetForm();
         document.getElementById('profileFormContainer').style.display = 'flex';
         document.querySelector('.modal-content h2').textContent = 'Create Character Profile';
         document.getElementById('createProfileBtn').innerText = 'Create Profile';
