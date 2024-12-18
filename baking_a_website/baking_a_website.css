@@ -1,8 +1,9 @@
 body {
     background-color: black;
-    display: center;
     text-align: center;
     color: #b2a3c4;
+    display: flex;
+    flex-direction: column;
     
 }
 
@@ -24,7 +25,11 @@ body {
 }
 
 .text-box2 {
-    display: block;
+    display: flex;
+    justify-content: space-between;  /* Space between text and image */
+    align-items: flex-start;             /* Vertically center image and text */
+    gap: 20px;
+
     margin: 30px 50px;
     width: auto;             
     height: auto;             
@@ -63,11 +68,11 @@ body {
 }
 
 .image1 {
-    max-width: 100%;          /* Make image responsive */
+    max-width: 400px;        /* Limit image width */
     height: auto;
 }
 
 .image2 {
-    max-width: 100%;          /* Make image responsive */
+    max-width: 100%;          
     height: auto;  
 }
