@@ -193,3 +193,17 @@ button{
     border-color: #0f021f;
     border-width: 3px;
 }
+
+h3 {
+    text-decoration: underline;
+    text-decoration-color: #8977b3;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 1px;
+    text-shadow: 
+        1px 1px 0 #8977b3,  
+        -1px 1px 0 #8977b3, 
+        1px -1px 0 #8977b3,  
+        -1px -1px 0 #8977b3;
+        font-family: 'Dancing Script', cursive;
+
+}
