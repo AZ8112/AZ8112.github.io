@@ -6,6 +6,7 @@
 </head>
 
 <header>
+    <button onclick="openNav()">☰Impressum</button>
     <div class="text-box1">
         <h1>Baking a website</h1>
         <h2>Matcha cake? This is how</h2>
@@ -14,6 +15,16 @@
 
 <body>
     <main>
+        <div id="mySidepanel" class="sidepanel">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
+            <p>Author: Azar Nox Wirth</p>
+            <p>Project: NoserYoung</p>
+            <p>GitHub: AZ8112</p>
+            <img class="image3" src="matchaCatCup.png" alt="matchacat">
+        </div>
+
+        
+
         <div class="text-box2">
 
             <div>
@@ -33,12 +44,13 @@
                 <p>30g honey</p>
                 <p>6g vanilla extract</p>
 
-                <h3>Topping</h3>
+                <h3>Topping:</h3>
                 <p>500ml heavy cream</p>
                 <p>50g sugar</p>
                 <p>1 pack of vanilla sugar</p>
             </div>
-            <img class="image1" src="matchaCatCup.png" alt="matchacat">
+            <img class="image1" src="Images/EndResult.jpg" alt="final result">
+            
         </div>
 
         <div class="text-box-container">
@@ -105,10 +117,11 @@
                 </p>
                 <img class="image3" src="Images/PipingBag.jpg" alt="piping bag">
                   <p>
-                    To decorate: pipe in any way you like!
+                    To decorate: pipe in any way you like and enjoy!
                   </p>  
                   <img class="image3" src="Images/EndResult.jpg" alt="final result">
             </div>
+
             <div class="text-box5">
                 <img class="image2" src="Images/Preparation1.jpg" alt="Preparation">
                 <img class="image2" src="Images/Whipped_Eggwhites3.jpg" alt="whipped egg whites">
@@ -123,6 +136,9 @@
                 <img class="image2" src="Images/WhippedCream.jpg" alt="whipped cream">
             </div>
         </div>
+
+       
+
         <div class="text-box4">
             <p>
                 My tipp:
@@ -130,7 +146,9 @@
                 and fluffy texture.
             </p>
         </div>
+
     </main>
+    <script src="baking_a_website.js"></script>
 </body>
 
 </html>

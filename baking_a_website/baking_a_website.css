@@ -27,6 +27,12 @@ body {
         -1px -1px 0 black;
         font-family: 'Dancing Script', cursive;
         font-size: 20px;
+
+    text-decoration: underline;
+    text-decoration-color: #59b683;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 2px;
+        
 }
 
 .text-box2 {
@@ -97,15 +103,15 @@ body {
 }
 
 .image1 {
-    max-width: 100%;       
-    height: 100%;
+    max-width: 70%;       
+    height: 80%;
 }
 
 
 .image2 {
-    max-width: 80%;          
+    max-width: 75%;          
     height: auto;  
-    margin-top: 31px;
+    margin-top: 8px;
 }
 
 .image3 {
@@ -130,4 +136,60 @@ body {
     
 }
 
+.sidepanel {
+    height: 100%;
+    width: 0; /* Fully closed */
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, rgb(131, 89, 141), rgb(64, 110, 64));
+    overflow-x: hidden; 
+    overflow-y: auto; 
+    transition: width 0.5s, padding-left 0.5s; 
+    font-family: Helvetica, sans-serif;
+    border-radius: 10px;
+    border: none; 
+    text-decoration: wavy;
+    color: black;
+    font-size: 20px;
+    box-sizing: border-box; 
+    text-align: left;
 
+    font-family: 'Dancing Script', cursive;
+
+    padding-left: 0; 
+}
+
+.sidepanel.open {
+    width: 20%; 
+    padding-left: 30px; 
+    padding-top: 40px;
+    border: 5px solid #9b88af; 
+}
+
+
+.closebtn{
+    position: absolute;
+    top: 10px; 
+    right: 15px; 
+    font-size: 25px; 
+    color: white; 
+    text-decoration: none; 
+    cursor: pointer;
+
+}
+
+button{
+    position: absolute;
+    top: 20px; 
+    left: 20px; 
+    font-size: 22px; 
+    color: rgb(127, 187, 127); 
+    text-decoration: none; 
+    cursor: pointer;
+    background-color: rgb(142, 106, 153);
+    border-radius: 10px;
+    border-color: #0f021f;
+    border-width: 3px;
+}
