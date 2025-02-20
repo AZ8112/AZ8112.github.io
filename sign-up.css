@@ -1,0 +1,195 @@
+body {
+    /* background: radial-gradient(to right, #55225f, #b33de2); */
+    background-color: rgb(42, 30, 53);
+}
+
+.sidepanel {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(31, 1, 25));
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+    font-family: Helvetica, sans-serif;
+}
+
+.sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: rgb(243, 227, 243);
+    display: block;
+    transition: 0.3s;
+}
+
+.submenu {
+    display: none; 
+    padding-left: 20px; 
+}
+
+.submenu a {
+    font-size: 20px; 
+    color: rgb(243, 227, 243); 
+}
+
+.submenu a:hover {
+    color: grey; 
+}
+
+.sidepanel a:hover { 
+    color: grey;
+}
+
+.sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.openbtnMenu {
+    font-size: 20px;
+    font-family: fantasy;
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: rgba(25, 2, 31, 0.974);
+    color: lavender;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #e20069ce;
+}
+
+.openbtnMenu:hover {
+    background-color: grey;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+* {box-sizing: border-box}
+/* Full-width input fields */
+  input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for all buttons */
+#signUpBtn {
+ 
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+
+.signup{
+  padding: 14px 20px;
+  background-color: #3659f4;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn  {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn, .signup {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d;
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+    width: 100%;
+  }
+}
