@@ -2,7 +2,7 @@
 
 ## Concept
 The general idea is to create a cooking website for a specific recipe.
-See [here](pad_thai/images/SiteFramePadThai.png) for the Site Map.
+See [here](images/SiteFramePadThai.png) for the Site Map.
 
 ### Website Elements
 * Intro
