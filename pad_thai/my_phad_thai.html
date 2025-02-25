@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="my_phad_thai.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <title>PhadThai</title>
 </head>
 <body>
@@ -15,7 +19,7 @@
             <a href="images/padThai8.png"  >
                 <img src="images/padThai8.png" alt="PhadThai" class="img1">
             </a>
-            <h2>PadThai</h2>
+            <h2><strong>PadThai</strong></h2>
         </div>
     </header>
 
@@ -24,14 +28,27 @@
     <main>
         <div id="mySidepanel" class="sidepanel">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
-             <div class="p1"></div>
+            <div class="p1"></div>
+            <h3>Navigation</h3>
+            <a href="#introduction" class="navigation" >Introduction</a>
+            <br>
+            <a href="#ingredients" class="navigation">Ingredients</a>
+            <br>
+            <a href="#instructions" class="navigation">Instructions</a>
+            <br>
+            <a href="#notes" class="navigation">Notes</a>
+            
+            <br>
+            <h3>Impressum</h3>
             <p>Author: Azar Nox Wirth</p>
             <p>Project: M293</p>
             <p>GitHub: AZ8112</p>
             <p>Repository name: </p>
             <a href="https://github.com/AZ8112/AZ8112.github.io" class="leading-link">AZ8112.github.io</a>
             <p>Path: baking_a_website </p>
-            <a href="Pad_Thai.pdf" download="YourFileName.pdf" class="leading-link">Download as PDF</a>
+            <a href="Pad_Thai.pdf" download="PadThai_recipe.pdf" class="leading-link">Download as PDF</a>
+            <h3>Contact</h3>
+            <p>Email: azar.wirth@outlook.com</p>
         </div>
             <!-- <a href="https://lv1.studio/products/matcha-cat" download="YourFileName.pdf">Contact</a> -->
             <!-- <br>
@@ -39,8 +56,8 @@
             <img class="image3" src="matchaCatCup.png" alt="matchacat"> -->
     
 
-        <div class="main-box">
-            <h3>Pad Thai: A Perfect Harmony of Flavors </h3>
+        <div class="main-box" id="intro">
+            <h3> <strong> Pad Thai: A Perfect Harmony of Flavors </strong> </h3>
             <p> 
                 Pad Thai is a world-renowned Thai street food classic that brings together the perfect balance of sweet, sour, salty, and umami flavors in every bite.<br>
                 Stir-fried rice noodles are tossed with a savory-sweet tamarind sauce, crunchy peanuts, fresh bean sprouts, and aromatic garlic <br>
@@ -61,34 +78,97 @@
 
         <br>
 
-        <div class="ingredients-box">
+        <div class="ingredients-box" id="ingredients">
             <div class="ingredients-text">
-            <h3>Ingredients</h3>
-            <h4>For the sauce:</h4>
-            <ul>
-                <li>50g palm sugar, finely chopped</li>
-                <li>70ml water</li>
-                <li>45g tamarind paste</li>
-                <li>45ml fish sauce</li> 
-            </ul>
-            <h4>For the Pad Thai:</h4>
-            <ul>
-                <li>170g dry rice noodles (medium size)</li>
-                <li>30g dried shrimp, roughly chopped</li>
-                <li>4 cloves garlic, chopped</li>
-                <li>50g shallots, roughly chopped</li>
-                <li>130g pressed tofu, cut into small pieces</li>
-                <li>70g preserved daikon radish, finely chopped</li>
-                <li>70ml vegetable oil</li>
-                <li>15 medium-sized shrimp, peeled and deveined</li>
-                <li>3 eggs</li>
-                <li>180g bean sprouts</li>
-                <li>100 grams garlic chives, cut into about 5 cm pieces</li>
-                <br>
-                <li>50g roasted peanuts, roughly chopped</li>
-                <li>half a lime per person, cut into wedges</li>
-                <li>Dried chili flakes, to taste (optional)</li>
-            </ul>
+            <h3><strong>Ingredients</strong> </h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Ingredient</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="4">For the Sauce</td>
+                        <td>Palm sugar, finely chopped</td>
+                        <td>50g</td>
+                    </tr>
+                    <tr>
+                        <td>Water</td>
+                        <td>70ml</td>
+                    </tr>
+                    <tr>
+                        <td>Tamarind paste</td>
+                        <td>45g</td>
+                    </tr>
+                    <tr>
+                        <td>Fish sauce</td>
+                        <td>45ml</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="13">For the Pad Thai</td>
+                        <td>Dry rice noodles (medium size)</td>
+                        <td>170g</td>
+                    </tr>
+                    <tr>
+                        <td>Dried shrimp, roughly chopped</td>
+                        <td>30g</td>
+                    </tr>
+                    <tr>
+                        <td>Garlic, chopped</td>
+                        <td>4 cloves</td>
+                    </tr>
+                    <tr>
+                        <td>Shallots, roughly chopped</td>
+                        <td>50g</td>
+                    </tr>
+                    <tr>
+                        <td>Pressed tofu, cut into small pieces</td>
+                        <td>130g</td>
+                    </tr>
+                    <tr>
+                        <td>Preserved daikon radish, finely chopped</td>
+                        <td>70g</td>
+                    </tr>
+                    <tr>
+                        <td>Vegetable oil</td>
+                        <td>70ml</td>
+                    </tr>
+                    <tr>
+                        <td>Medium-sized shrimp, peeled and deveined</td>
+                        <td>15 pieces</td>
+                    </tr>
+                    <tr>
+                        <td>Eggs</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Bean sprouts</td>
+                        <td>180g</td>
+                    </tr>
+                    <tr>
+                        <td>Garlic chives, cut into 5 cm pieces</td>
+                        <td>100g</td>
+                    </tr>
+                    <tr>
+                        <td>Roasted peanuts, roughly chopped</td>
+                        <td>50g</td>
+                    </tr>
+                    <tr>
+                        <td>Lime wedges (half per person)</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>To taste</td>
+                        <td>Dried chili flakes </td>
+                        <td>(optional)</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+            
         </div>
         <div class="ingredients-img">
             <a href="images/ingredients.webp"  >
@@ -99,7 +179,7 @@
 
         <br>
 
-        <div class="instruction-box">
+        <div class="instruction-box" id="instructions">
             <ol>
         <li><strong>Prepare the Sauce:</strong>
             <ul>
@@ -171,7 +251,7 @@
 
         <br>
 
-        <div class="notes-box">
+        <div class="notes-box" id="notes">
             <h4><strong> Notes:</strong></h4>
 <ul>    
 

@@ -2,6 +2,7 @@ body {
     /* background: radial-gradient(circle, rgb(84, 7, 7), rgba(230, 221, 221, 0.793), rgba(21, 7, 115, 0.949), rgba(230, 221, 221, 0.793), rgba(104, 7, 7, 0.977)); */
     background: radial-gradient(circle, rgb(20, 1, 1), rgb(88, 19, 19) );
     font-family: 'Cormorant Garamond', serif;
+    
 }
 
 h1 {
@@ -41,7 +42,7 @@ h2 {
     border-radius: 1%;
     padding: 2%;
     color: rgb(233, 231, 231); 
-    font-size: 20px;
+    font-size: 25px;
 }
 
 a {
@@ -73,8 +74,8 @@ a {
     overflow-x: hidden; 
     overflow-y: auto; 
     transition: width 0.5s, padding-left 0.5s; 
-    font-family: 'Cormorant Garamond', serif;
-   
+    font-family: serif;
+
     color: rgba(224, 214, 214, 0.808);
     font-size: 20px;
     box-sizing: border-box; 
@@ -136,7 +137,7 @@ button {
     border-radius: 1%;
     padding: 2%;
     color: rgb(233, 231, 231); 
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .ingredients-img{
@@ -159,7 +160,7 @@ button {
     border-radius: 1%;
     padding: 2%;
     color: rgb(233, 231, 231); 
-    font-size: 20px;
+    font-size: 25px;
 }
 .notes-box{
     display: flex;
@@ -169,7 +170,7 @@ button {
     border-radius: 1%;
     padding: 2%;
     color: rgb(233, 231, 231); 
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .img2 {
@@ -181,5 +182,17 @@ button {
 }
 
 .leading-link {
-    color: ;
+    color: rgb(139, 133, 133);
+}
+
+.leading-link:hover {
+    color: rgb(130, 33, 33);
+}
+
+.navigation {
+    color: rgb(139, 133, 133);
+}
+
+.navigation:hover {
+    color: rgb(130, 33, 33);
 }
