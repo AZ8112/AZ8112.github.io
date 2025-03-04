@@ -9,3 +9,4 @@ Made by writers for writers:
   bake and create, my matcha cake
 * [My Pad Thai](https://az8112.github.io/pad_thai/my_phad_thai.html)
   try and create a delicious meal!
+* [My favorite artists](https://az8112.github.io/my_favorite_artist/my_favorite_artist.html)
