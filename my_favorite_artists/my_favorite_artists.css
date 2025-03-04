@@ -1,0 +1,89 @@
+#fav-artist{
+    position: absolute; 
+    right: 5%;        
+    top: 50%;            
+    transform: translateY(-50%);
+    color: rgba(146, 123, 175, 0.696);
+    margin: 0;
+    line-height: 2;
+    font-size: 45px;
+    
+}
+
+/* Reset default padding and margin */
+body, ul {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style the navigation bar */
+nav {
+    background-color: #333; 
+    padding: 10px 0;
+    position: fixed; 
+    top: 0;
+    width: 100%; 
+    z-index: 1000;
+}
+
+/* Style the navigation list */
+nav ul {
+    list-style: none;
+    text-align: center;
+}
+
+/* Style the navigation links */
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    display: inline-block;
+}
+
+/* Add hover effect */
+nav ul li a:hover {
+    background-color: #433156;
+    border-radius: 5px;
+}
+
+/* Hide menu by default on smaller screens */
+#nav-menu {
+    display: flex;
+}
+
+/* Show menu when the 'active' class is added */
+#nav-menu.active {
+    display: block;
+}
+
+/* Style the menu button */
+#menu-btn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Album Grid Container */
+.artist-covers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* makes 4 columns that take 1 equal fraction from the container*/
+    column-gap: 90px; /* Increase horizontal spacing between columns */
+    row-gap: 50px; /* Keep vertical spacing between rows */
+    padding: 20px;
+    max-width: 1350px;
+    margin: 0 auto; /* Center the grid */
+    font-size: 15px;
+}
