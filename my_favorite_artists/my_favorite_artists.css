@@ -15,6 +15,7 @@
     
 }
 
+
 /* Reset default padding and margin */
 body, ul {
     background-color: black;
@@ -126,6 +127,14 @@ nav ul li a:hover {
     font-family: 'Allan';
 }
 
+.covers p {
+    margin: 2px 0;
+    font-size: 18px;
+    color: rgb(14, 13, 13);
+    text-align: center;
+    font-family: 'Allan';
+}
+
 
 .img1 {
     width: 100%; 
@@ -161,4 +170,57 @@ nav ul li a:hover {
 
 .dropdown.active .dropdown-content {
     display: block;
+}
+
+
+
+footer {
+    display: grid;
+    grid-template-areas: 
+        "footer-text footer-text footer-text footer-text" 
+        "link1 link2 link3 link4";
+    gap: 5%;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    height: 150px;
+    z-index: 1000;
+    margin-bottom: 0%;
+}
+
+footer p {
+    margin-top: 1px;
+    margin-bottom: 1%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2%;
+}
+
+.footer-text {
+    grid-area: footer-text; 
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 0;
+    border-left: 0;
+    margin: 0;
+}
+
+.yt-links {
+    
+    color: rgb(231, 191, 246);
+    text-align: left;
+    flex-direction: column;
+    padding-left: 10%;
+    margin-bottom: 0;
+    font-size: medium;
+}
+
+.yt-links:hover {
+    color: blueviolet;
+    
 }
