@@ -1,8 +1,15 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Allan:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Hanalei+Fill&family=Pattaya&family=Rubik+Lines&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allan:wght@400;700&family=Alumni+Sans+Pinstripe:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Hanalei+Fill&family=Pattaya&family=Rubik+Lines&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allan:wght@400;700&family=Alumni+Sans+Pinstripe:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Hanalei+Fill&family=Pattaya&family=Rubik+Lines&family=Stardos+Stencil:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allan:wght@400;700&family=Alumni+Sans+Pinstripe:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Gabarito:wght@400..900&family=Hanalei+Fill&family=Pattaya&family=Rubik+Lines&family=Stardos+Stencil:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allan:wght@400;700&family=Alumni+Sans+Pinstripe:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Gabarito:wght@400..900&family=Hanalei+Fill&family=Pattaya&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Rubik+Lines&family=Stardos+Stencil:wght@400;700&display=swap');
+
 /* Base style for mobile (default) */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 50px 5px 20px 5px;
+    padding-top: 50px;
     background-color: #DCE0DE ;
 }
 
@@ -19,6 +26,13 @@ nav {
     justify-content: center; /* Center items horizontally */
     flex-wrap: wrap;
     min-height: 50px;
+}
+
+
+
+.text {
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 /* Navigation menu container */
@@ -69,35 +83,83 @@ nav ul li a:hover {
 /* Ensure Title is Always Aligned */
 #KLF-title {
     color: white;
-    font-size: 16px; 
+    font-size: 20px; 
     text-align: left;
     flex-grow: 1;
     margin: 5px 0; 
     padding-right: 5px;
+    font-family: 'Gabarito';
 }
 
-/* Style the menu button */
+.nav-em{
+    font-family: 'Alumni Sans Pinstripe';
+    font-size: 20px;
+    font-weight: bold;
+
+}
+.first-title {
+    font-family: 'Alumni Sans Pinstripe';
+    font-weight: bold;
+    font-size: 40px;
+    margin: 0;
+    padding-top: 5px;
+
+}
+
+.headers-styling{
+    font-family: 'Alumni Sans Pinstripe';
+    font-size: 30px;
+    padding: 1px;
+    margin: 2px;
+}
+
+p {
+    font-family: 'Roboto Condensed';
+}
+
+.video-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.video-container video {
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+}
+
+
 #menu-btn {
-    font-size: 24px;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    position: absolute;
-    top: 5px;
-    left: 10px;
-    display: block;
+    display: none; 
 }
 
-#bg-video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-  }
+footer {
+    background-color: #667D78; /* Match navigation bar */
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    gap: 10px; /* Adjust spacing */
+}
+
+.footer-container div a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px 0;
+    display: inline-block;
+}
+
+.footer-container div a:hover {
+    text-decoration: underline;
+}
+
   
 /* Desktop Styles */
 @media (min-width: 600px) {
@@ -124,8 +186,18 @@ nav ul li a:hover {
     #KLF-title {
         font-size: 22px; /* Restore larger title font */
     }
-
+    
+    /* Style the menu button */
     #menu-btn {
-        display: none; 
+        font-size: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: 5px;
+        left: 10px;
+        display: block;
     }
+    
+
 }
