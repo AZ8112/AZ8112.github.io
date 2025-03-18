@@ -11,5 +11,5 @@ Made by writers for writers:
   try and create a delicious meal!
 * [My favorite artists](https://az8112.github.io/my_favorite_artists/my_favorite_artists.html)
 Listen to some of thw best artists of all time (in my opinion)
-* [Kwan Lymph Flow](https://az8112.github.io/LymphClinic/KLF.html)
+* [Kwan Lymph Flow](https://az8112.github.io/lymph_clinic/KLF.html)
 Testing future commercial website's responsiveness
