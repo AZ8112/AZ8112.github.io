@@ -1,0 +1,110 @@
+/* Base style for mobile (default) */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the navigation bar */
+nav {
+    background-color: #333; 
+    padding: 10px;
+    position: fixed; 
+    top: 0;
+    width: 100%; 
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center items horizontally */
+    flex-wrap: wrap;
+}
+
+/* Navigation menu container */
+#nav-menu {
+    display: flex;
+    width: 100%;
+    text-align: center;
+}
+
+/* Show menu when the 'active' class is added */
+#nav-menu.active {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Style the navigation list */
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+/* Navigation links */
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    display: inline-block;
+}
+
+/* Add hover effect */
+nav ul li a:hover {
+    background-color: #433156;
+    border-radius: 5px;
+}
+
+/* Ensure Title is Always Aligned */
+#KLF-title {
+    color: white;
+    font-size: 22px;
+    margin-left: 15px;
+    text-align: left;
+    flex-grow: 1;
+}
+
+/* Style the menu button */
+#menu-btn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: block;
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+    nav {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+
+    #nav-menu {
+        display: flex !important;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    nav ul {
+        flex-direction: row;
+    }
+
+    #menu-btn {
+        display: none; /* Hide menu button on larger screens */
+    }
+}
