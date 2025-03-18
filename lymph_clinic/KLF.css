@@ -8,7 +8,7 @@ body {
 /* Style the navigation bar */
 nav {
     background-color: #333; 
-    padding: 10px;
+    padding: 5px 0;
     position: fixed; 
     top: 0;
     width: 100%; 
@@ -17,6 +17,7 @@ nav {
     align-items: center;
     justify-content: center; /* Center items horizontally */
     flex-wrap: wrap;
+    min-height: 50px;
 }
 
 /* Navigation menu container */
@@ -46,15 +47,15 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin: 0 15px;
+    margin: 5px 0;
 }
 
 /* Navigation links */
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
-    padding: 10px 15px;
+    font-size: 14px;
+    padding: 8px 12px;
     display: inline-block;
 }
 
@@ -67,10 +68,10 @@ nav ul li a:hover {
 /* Ensure Title is Always Aligned */
 #KLF-title {
     color: white;
-    font-size: 22px;
-    margin-left: 15px;
-    text-align: left;
+    font-size: 16px; 
+    text-align: center;
     flex-grow: 1;
+    margin: 5px 0; 
 }
 
 /* Style the menu button */
@@ -81,13 +82,13 @@ nav ul li a:hover {
     color: white;
     cursor: pointer;
     position: absolute;
-    top: 10px;
+    top: 5px;
     left: 10px;
     display: block;
 }
 
 /* Desktop Styles */
-@media (min-width: 768px) {
+@media (min-width: 600px) {
     nav {
         flex-direction: row;
         justify-content: space-between;
@@ -104,7 +105,15 @@ nav ul li a:hover {
         flex-direction: row;
     }
 
+    nav ul li a {
+        font-size: 18px;
+    }
+    
+    #KLF-title {
+        font-size: 22px; /* Restore larger title font */
+    }
+
     #menu-btn {
-        display: none; /* Hide menu button on larger screens */
+        display: none; 
     }
 }
