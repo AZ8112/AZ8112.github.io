@@ -171,6 +171,27 @@ footer {
   
 /* Desktop Styles */
 @media (min-width: 600px) {
+    .text {
+        margin: 0 auto;
+        width: 60%; /* Adjust as needed */
+        font-size: 20px;
+    }
+    
+    .first-title {
+        margin: 0 auto;
+        width: 60%; /* Same as .text for consistent layout */
+        text-align: center;
+    }
+    
+    .contact-container {
+        background-color: #667D78;
+        border-radius: 2%;
+        padding: 20px; /* Adjust padding for spacing */
+        width: 80%; /* Make it responsive */
+        margin: 0 auto; /* Center the box */
+        box-sizing: border-box; /* Include padding and border in the width */
+    }
+
     nav {
         flex-direction: row;
         justify-content: space-between;
