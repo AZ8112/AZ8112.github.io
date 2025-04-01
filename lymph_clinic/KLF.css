@@ -35,6 +35,16 @@ nav {
     padding-right: 5px;
 }
 
+.logo {
+    width: 100%;
+   max-width: 300px; 
+    transform: scale(4.5); /* Zoom in 1.5x */
+    transform-origin: center;
+    display: block;
+    margin: auto;
+    padding-bottom: 7%;
+}
+
 /* Navigation menu container */
 #nav-menu {
     display: flex;
@@ -207,5 +217,40 @@ footer {
         display: block;
     }
     
+    .text{
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+.intro-flex {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: nowrap;
+  }
+  
+  .intro-flex .logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .logo {
+    transform: scale(3.8);
+    transform-origin: center;
+    display: block;
+  }
+  
+  
+  .intro-flex #firstp {
+    font-size: 18px;
+    line-height: 1.5;
+    flex: 1;
+    min-width: 0;
+    padding-top: 5%;
+  }
+  
 
 }

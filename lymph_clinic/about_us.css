@@ -210,6 +210,12 @@ footer {
         left: 10px;
         display: block;
     }
+
+    .text{
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
     
 
 }
