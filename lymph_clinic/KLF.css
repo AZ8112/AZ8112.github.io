@@ -10,12 +10,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding-top: 50px;
-    background-color: #DCE0DE ;
+    background-color: #f3f3ea ;
 }
 
 /* Style the navigation bar */
 nav {
-    background-color: #667D78; 
+    background-color: #29b09f; 
     padding: 5px 0;
     position: fixed; 
     top: 0;
@@ -43,6 +43,10 @@ nav {
     display: block;
     margin: auto;
     padding-bottom: 7%;
+}
+
+.logo-wrapper {
+    display: none;
 }
 
 /* Navigation menu container */
@@ -85,10 +89,22 @@ nav ul li a {
 }
 
 /* Add hover effect */
-nav ul li a:hover {
-    background-color: #433156;
-    border-radius: 5px;
-}
+nav ul li a::before {
+        content: '';
+        position: absolute;
+        top: -10px; /* Adjust to control how far it overflows */
+        bottom: -10px;
+        left: 0;
+        right: 0;
+        background-color: transparent;
+        z-index: -1;
+      }
+      
+      nav ul li a:hover::before {
+        background-color: #216867;
+      }
+
+
 
 /* Ensure Title is Always Aligned */
 #KLF-title {
@@ -144,7 +160,7 @@ p {
 }
 
 footer {
-    background-color: #667D78; /* Match navigation bar */
+    background-color: #29b09f; /* Match navigation bar */
     padding: 20px 0;
     text-align: center;
 }
@@ -195,14 +211,37 @@ footer {
 
     nav ul {
         flex-direction: row;
+        
     }
+
+    nav ul li {
+        position: relative;
+        overflow: visible; 
+      }
 
     nav ul li a {
         font-size: 18px;
+        position: relative;
+        z-index: 1;
     }
+
+    nav ul li a::before {
+        content: '';
+        position: absolute;
+        top: -10px; /* Adjust to control how far it overflows */
+        bottom: -10px;
+        left: 0;
+        right: 0;
+        background-color: transparent;
+        z-index: -1;
+      }
+      
+      nav ul li a:hover::before {
+        background-color: #216867;
+      }
     
     #KLF-title {
-        font-size: 22px; /* Restore larger title font */
+        font-size: 22px; /
     }
     
     /* Style the menu button */
@@ -230,7 +269,7 @@ footer {
     flex-wrap: nowrap;
   }
   
-  .intro-flex .logo-wrapper {
+.logo-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -249,7 +288,7 @@ footer {
     line-height: 1.5;
     flex: 1;
     min-width: 0;
-    padding-top: 5%;
+  
   }
   
 
