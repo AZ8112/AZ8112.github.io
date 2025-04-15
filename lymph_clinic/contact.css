@@ -97,6 +97,10 @@ nav ul li a:hover {
     font-family: 'Gabarito';
 }
 
+.contact-image {
+    display: none;
+  }
+
 .nav-em{
     font-family: 'Alumni Sans Pinstripe';
     font-size: 20px;
@@ -171,26 +175,61 @@ footer {
   
 /* Desktop Styles */
 @media (min-width: 600px) {
-    .text {
-        margin: 0 auto;
-        width: 60%; /* Adjust as needed */
-        font-size: 20px;
-    }
+    
     
     .first-title {
         margin: 0 auto;
-        width: 60%; /* Same as .text for consistent layout */
         text-align: center;
+        font-size: 350%;
+        font-weight: bold;
     }
     
     .contact-container {
         background-color: #e8e9e0;
         border-radius: 2%;
-        padding: 20px; 
+        padding: 20px;
         width: 80%;
         margin: 0 auto;
-        box-sizing: border-box; 
-    }
+        box-sizing: border-box;
+      }
+      
+      
+      .contact-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      
+      .first-title {
+        margin: 0 auto 20px auto;
+        text-align: center;
+        width: 100%;
+      }
+      
+      .text {
+        flex: 1;
+        min-width: 250px;
+        font-size: 20px;
+      }
+      
+      .contact-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 200px;
+        max-width: 400px;
+      }
+      
+      .contact-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 50%;
+      }
+      
+      
 
     nav {
         flex-direction: row;

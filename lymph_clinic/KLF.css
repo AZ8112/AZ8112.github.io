@@ -89,20 +89,10 @@ nav ul li a {
 }
 
 /* Add hover effect */
-nav ul li a::before {
-        content: '';
-        position: absolute;
-        top: -10px; /* Adjust to control how far it overflows */
-        bottom: -10px;
-        left: 0;
-        right: 0;
-        background-color: transparent;
-        z-index: -1;
-      }
-      
-      nav ul li a:hover::before {
-        background-color: #216867;
-      }
+nav ul li a:hover {
+    background-color: #216867;
+    border-radius: 5px;
+}
 
 
 
