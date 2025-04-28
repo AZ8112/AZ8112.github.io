@@ -35,10 +35,13 @@
                     </div>
                     <br>
                     <p class="upload">Upload Image (max. 5MB)</p>
-                    <input type="text" class="profileDescription" placeholder="Middle name">
-                    <input type="text" class="profileDescription" placeholder="Last name">
-                    <input type="text" class="profileDescription" placeholder="Age">
-                    <input type="text" class="profileDescription" placeholder="Gender/Pronouns">
+                    <div class="extra-fields">
+                        <input type="text" id="middleName" placeholder="Middle name" class="profileDescription">
+                        <input type="text" id="lastName" placeholder="Last name" class="profileDescription">
+                        <input type="text" id="age" placeholder="Age" class="profileDescription">
+                        <input type="text" id="genderPronouns" placeholder="Gender/Pronouns" class="profileDescription">
+                    </div>
+                    
                     <textarea id="profileContent" rows="6" placeholder="Describe your character"></textarea>
                     <div class="button-container">
                         <button id="createProfileBtn">Create Profile</button>

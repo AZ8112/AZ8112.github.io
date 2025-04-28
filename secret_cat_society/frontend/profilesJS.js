@@ -31,6 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    document.getElementById('age').addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+    
+
     document.getElementById('showProfileFormBtn').addEventListener('click', function() {
         resetForm();
         document.getElementById('profileFormContainer').style.display = 'flex';
@@ -50,32 +55,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     async function saveProfile() {
-        const name = document.getElementById('profileTitle').value;
-        const description = document.getElementById('profileContent').value;
-        const imageSrc = document.getElementById('imagePreview').src;
-
-        if (!name || !description) {
-            alert("Please fill in all fields.");
-            return;
-        }
-
-        if (imageSrc === defaultImageSrc || imageSrc === '') {
-            alert("Please upload a profile picture.");
-            return;
-        }
+        const profileData = collectProfileData();
+        if (!profileData) return;
 
         try {
             const docRef = await db.collection('profiles').add({
-                name: name,
-                description: description,
-                imageSrc: imageSrc,
+                ...profileData,
                 timestamp: new Date()
             });
             console.log('Profile saved to Firestore!');
             alert('Profile saved!');
             resetForm();
             document.getElementById('profileFormContainer').style.display = 'none';
-            addSingleProfile(docRef.id, { name, description, imageSrc }); // Only add the new card!
+            addProfileCard(profileData, docRef.id); // Add new card dynamically
         } catch (error) {
             console.error('Error saving profile:', error);
         }
@@ -114,12 +106,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let imageHtml = (profile.imageSrc === '' || profile.imageSrc === defaultImageSrc)
             ? `<div class="placeholder">No Image</div>`
-            : `<img src="${profile.imageSrc}" alt="${profile.name}">`;
+            : `<img src="${profile.imageSrc}" alt="${profile.firstName}">`;
+
+        let ageDisplay = profile.age ? `, ${profile.age}` : '';
+        let pronounsDisplay = profile.genderPronouns ? ` (${profile.genderPronouns})` : '';
 
         profileCard.innerHTML = `
             ${imageHtml}
-            <div class="profile-name">${profile.name}</div>
-            <div class="profile-description">${profile.description.slice(0, 100)}...</div>
+            <div class="profile-name">${profile.firstName}${ageDisplay}${pronounsDisplay}</div>
             <div class="profile-actions">
                 <button class="edit-btn" onclick="editProfile('${id}')">Edit</button>
                 <button class="delete-btn" onclick="deleteProfile('${id}')">Delete</button>
@@ -128,12 +122,12 @@ document.addEventListener('DOMContentLoaded', function() {
         profileContainer.appendChild(profileCard);
     }
 
-    function addSingleProfile(id, profile) {
-        addProfileCard(profile, id);
-    }
-
     function resetForm() {
         document.getElementById('profileTitle').value = '';
+        document.getElementById('middleName').value = '';
+        document.getElementById('lastName').value = '';
+        document.getElementById('age').value = '';
+        document.getElementById('genderPronouns').value = '';
         document.getElementById('profileContent').value = '';
         document.getElementById('imagePreview').src = defaultImageSrc;
         document.getElementById('imagePreview').alt = 'Upload Image';
@@ -143,13 +137,34 @@ document.addEventListener('DOMContentLoaded', function() {
         currentEditId = null;
     }
 
+    function collectProfileData() {
+        const firstName = document.getElementById('profileTitle').value.trim();
+        const middleName = document.getElementById('middleName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const age = document.getElementById('age').value.trim();
+        const genderPronouns = document.getElementById('genderPronouns').value.trim();
+        const description = document.getElementById('profileContent').value.trim();
+        const imageSrc = document.getElementById('imagePreview').src;
+
+        if (!firstName || !description) {
+            alert("Please fill in required fields.");
+            return null;
+        }
+
+        return { firstName, middleName, lastName, age, genderPronouns, description, imageSrc };
+    }
+
     window.editProfile = async function(id) {
         try {
             const doc = await db.collection('profiles').doc(id).get();
             if (doc.exists) {
                 const profile = doc.data();
-                document.getElementById('profileTitle').value = profile.name;
-                document.getElementById('profileContent').value = profile.description;
+                document.getElementById('profileTitle').value = profile.firstName || '';
+                document.getElementById('middleName').value = profile.middleName || '';
+                document.getElementById('lastName').value = profile.lastName || '';
+                document.getElementById('age').value = profile.age || '';
+                document.getElementById('genderPronouns').value = profile.genderPronouns || '';
+                document.getElementById('profileContent').value = profile.description || '';
                 document.getElementById('imagePreview').src = profile.imageSrc || defaultImageSrc;
                 document.getElementById('profileFormContainer').style.display = 'flex';
                 document.getElementById('createProfileBtn').innerText = 'Update Profile';
@@ -165,26 +180,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function updateProfile() {
-        const name = document.getElementById('profileTitle').value;
-        const description = document.getElementById('profileContent').value;
-        const imageSrc = document.getElementById('imagePreview').src;
-
-        if (!currentEditId) {
-            console.error("No profile selected for editing.");
-            return;
-        }
+        const profileData = collectProfileData();
+        if (!profileData || !currentEditId) return;
 
         try {
             await db.collection('profiles').doc(currentEditId).update({
-                name: name,
-                description: description,
-                imageSrc: imageSrc,
+                ...profileData,
                 timestamp: new Date()
             });
 
             console.log('Profile updated!');
             alert('Profile updated!');
-            updateProfileCard(currentEditId, { name, description, imageSrc });
+            updateProfileCard(currentEditId, profileData);
             document.getElementById('profileFormContainer').style.display = 'none';
             resetForm();
         } catch (error) {
@@ -196,9 +203,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const card = document.getElementById(`profile-${id}`);
         if (!card) return;
 
-        card.querySelector('img').src = profile.imageSrc || defaultImageSrc;
-        card.querySelector('.profile-name').textContent = profile.name;
-        card.querySelector('.profile-description').textContent = profile.description.slice(0, 100) + '...';
+        let ageDisplay = profile.age ? `, ${profile.age}` : '';
+        let pronounsDisplay = profile.genderPronouns ? ` (${profile.genderPronouns})` : '';
+
+        if (card.querySelector('img')) {
+            card.querySelector('img').src = profile.imageSrc || defaultImageSrc;
+        }
+
+        card.querySelector('.profile-name').textContent = `${profile.firstName}${ageDisplay}${pronounsDisplay}`;
     }
 });
 

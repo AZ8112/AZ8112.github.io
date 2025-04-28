@@ -328,3 +328,13 @@ h2 {
 .upload{
     padding-top: 2%;
 }
+
+.extra-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 480px;
+    gap: 10px;
+    padding-bottom: 2%;
+}
