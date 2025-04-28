@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const defaultImageSrc = 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png';
+    let editMode = false;
+    let currentEditId = null;
 
-    // Load profiles when the page loads
     loadProfiles();
 
     document.getElementById("profileTitle").addEventListener("input", function () {
@@ -33,8 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('showProfileFormBtn').addEventListener('click', function() {
         resetForm();
         document.getElementById('profileFormContainer').style.display = 'flex';
-        document.querySelector('.modal-content h2').textContent = 'Create Character Profile';
-        document.getElementById('createProfileBtn').innerText = 'Create Profile';
     });
 
     document.getElementById('closeProfileFormBtn').addEventListener('click', function() {
@@ -43,7 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.getElementById('createProfileBtn').addEventListener('click', function() {
-        saveProfile();
+        if (editMode) {
+            updateProfile();
+        } else {
+            saveProfile();
+        }
     });
 
     async function saveProfile() {
@@ -62,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            await db.collection('profiles').add({
+            const docRef = await db.collection('profiles').add({
                 name: name,
                 description: description,
                 imageSrc: imageSrc,
@@ -72,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Profile saved!');
             resetForm();
             document.getElementById('profileFormContainer').style.display = 'none';
-            loadProfiles();
+            addSingleProfile(docRef.id, { name, description, imageSrc }); // Only add the new card!
         } catch (error) {
             console.error('Error saving profile:', error);
         }
@@ -97,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             await db.collection('profiles').doc(id).delete();
             console.log('Profile deleted!');
-            loadProfiles();
+            document.getElementById(`profile-${id}`).remove(); // Remove only the deleted card
         } catch (error) {
             console.error('Error deleting profile:', error);
         }
@@ -107,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const profileContainer = document.getElementById('profileContainer');
         const profileCard = document.createElement('div');
         profileCard.classList.add('profile-card');
+        profileCard.setAttribute('id', `profile-${id}`);
 
         let imageHtml = (profile.imageSrc === '' || profile.imageSrc === defaultImageSrc)
             ? `<div class="placeholder">No Image</div>`
@@ -117,10 +121,15 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="profile-name">${profile.name}</div>
             <div class="profile-description">${profile.description.slice(0, 100)}...</div>
             <div class="profile-actions">
+                <button class="edit-btn" onclick="editProfile('${id}')">Edit</button>
                 <button class="delete-btn" onclick="deleteProfile('${id}')">Delete</button>
             </div>
         `;
         profileContainer.appendChild(profileCard);
+    }
+
+    function addSingleProfile(id, profile) {
+        addProfileCard(profile, id);
     }
 
     function resetForm() {
@@ -130,6 +139,66 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('imagePreview').alt = 'Upload Image';
         document.getElementById('createProfileBtn').innerText = 'Create Profile';
         document.querySelector('.modal-content h2').textContent = 'Create Character Profile';
+        editMode = false;
+        currentEditId = null;
+    }
+
+    window.editProfile = async function(id) {
+        try {
+            const doc = await db.collection('profiles').doc(id).get();
+            if (doc.exists) {
+                const profile = doc.data();
+                document.getElementById('profileTitle').value = profile.name;
+                document.getElementById('profileContent').value = profile.description;
+                document.getElementById('imagePreview').src = profile.imageSrc || defaultImageSrc;
+                document.getElementById('profileFormContainer').style.display = 'flex';
+                document.getElementById('createProfileBtn').innerText = 'Update Profile';
+                document.querySelector('.modal-content h2').textContent = 'Update Character Profile';
+                editMode = true;
+                currentEditId = id;
+            } else {
+                console.error("Profile not found!");
+            }
+        } catch (error) {
+            console.error('Error fetching profile:', error);
+        }
+    }
+
+    async function updateProfile() {
+        const name = document.getElementById('profileTitle').value;
+        const description = document.getElementById('profileContent').value;
+        const imageSrc = document.getElementById('imagePreview').src;
+
+        if (!currentEditId) {
+            console.error("No profile selected for editing.");
+            return;
+        }
+
+        try {
+            await db.collection('profiles').doc(currentEditId).update({
+                name: name,
+                description: description,
+                imageSrc: imageSrc,
+                timestamp: new Date()
+            });
+
+            console.log('Profile updated!');
+            alert('Profile updated!');
+            updateProfileCard(currentEditId, { name, description, imageSrc });
+            document.getElementById('profileFormContainer').style.display = 'none';
+            resetForm();
+        } catch (error) {
+            console.error('Error updating profile:', error);
+        }
+    }
+
+    function updateProfileCard(id, profile) {
+        const card = document.getElementById(`profile-${id}`);
+        if (!card) return;
+
+        card.querySelector('img').src = profile.imageSrc || defaultImageSrc;
+        card.querySelector('.profile-name').textContent = profile.name;
+        card.querySelector('.profile-description').textContent = profile.description.slice(0, 100) + '...';
     }
 });
 
