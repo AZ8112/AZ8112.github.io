@@ -1,5 +1,5 @@
 body {
-    background-image: url('homepagemascot.png');
+    background-image: url('images/homepagemascot.png');
     background-repeat: no-repeat; /* Prevents the image from repeating */
     background-attachment: fixed; /* Keeps the image fixed while scrolling */
     background-size: cover;
