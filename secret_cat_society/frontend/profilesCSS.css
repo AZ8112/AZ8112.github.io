@@ -1,9 +1,43 @@
 body {
-    background-image: url('images/homepage_local.png');
+    background-image: url('homepage_local.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
   }
+
+
+.modal-box {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 1, 12, 0.637);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: linear-gradient(to bottom, rgb(123, 5, 78), rgb(56, 2, 70));
+    padding: 20px;
+    border-radius: 5px;
+    width: 90%;
+    height: auto;
+    max-width: 500px;
+    display: flex;  
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    color: rgb(245, 231, 235);
+    font-family: Helvetica, sans-serif;
+}
 
 #showProfileFormBtn {
     position: absolute;
@@ -23,6 +57,15 @@ body {
     margin: 5px auto;
 }
 
+#getProfilesBtn{
+    background-color: #7240aa;
+    color: white;
+    border: none;
+    padding: 2px 7px;
+    cursor: pointer;
+    border-radius: 1px;
+}
+
 #showProfileFormBtn:hover {
     opacity: 0.8;
 }
@@ -33,34 +76,6 @@ body {
 }
 
 
-.modal-box {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(26, 1, 12, 0.637);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: linear-gradient(to bottom, rgb(123, 5, 78), rgb(56, 2, 70));
-    padding: 20px;
-    border-radius: 5px;
-    width: 80%;
-    height: 85%;
-    max-width: 500px;
-    margin: auto;
-}
-
-h2 {
-    text-align: center;
-    color: rgb(245, 231, 235);
-    font-family: Helvetica, sans-serif;
-}
-
 #closeProfileFormBtn {
     background-color: #1d020d;
     color: white;
@@ -70,11 +85,25 @@ h2 {
     border-radius: 1px;
 }
 
-#profileTitle, #profileContent {
+.button-container {
+    display: flex; 
+    justify-content: flex-start; 
+    gap: 10px;
+    width: 100%;
+    margin-top: 15px;
+    padding-left: 13%;
+}
+
+#profileTitle, #profileContent, .profileDescription {
+    display: block;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ffe600;
     width: 95%;
+    max-width: 450px;
     font-family: Helvetica, sans-serif;
     resize: none;
     margin-top: 10px;
@@ -129,6 +158,15 @@ h2 {
     height: 230px;
 }
 
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%; 
+    max-width: 500px;
+    height: 90%;
+}
+
 .profile-card img {
     width: 100px;
     height: 100px;
@@ -145,9 +183,9 @@ h2 {
     text-align: center;
     color: rgb(212, 195, 163);
     font-family: Helvetica, sans-serif;
-    white-space: nowrap;   /* Prevents text from wrapping */
-    overflow: hidden;      /* Hides overflowed text */
-    text-overflow: ellipsis; /* Adds an ellipsis (…) for overflowed text */
+    white-space: nowrap;   
+    overflow: hidden;     
+    text-overflow: ellipsis; 
     width: 100px;
 }
 
@@ -177,9 +215,42 @@ h2 {
     cursor: pointer;
 }
 
-.delete-btn {
-    background-color: #af2300;
+.profile-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
+
+.edit-btn {
+    background-color: #007BFF;  /* Blue */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease-in-out;
+}
+
+.edit-btn:hover {
+    background-color: #0056b3;
+}
+
+.delete-btn {
+    background-color: #af2300;  /* Red */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease-in-out;
+}
+
+.delete-btn:hover {
+    background-color: red;
+}
+
 
 .openbtn {
     font-size: 20px;
@@ -252,4 +323,8 @@ h2 {
 
 .sidepanel a:hover { 
     color: grey;
+}
+
+.upload{
+    padding-top: 2%;
 }

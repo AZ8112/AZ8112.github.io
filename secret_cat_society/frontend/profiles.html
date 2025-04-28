@@ -5,50 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Profiles</title>
     <link rel="stylesheet" href="profilesCSS.css">
-    <link rel="icon" href="images/mascotlogo.png" type="image/x-icon">
+    <link rel="icon" href="mascotlogo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!-- Button to open the sidebar -->
-    <button class="openbtn">☰</button>
+    
 
     <div id="mySidepanel" class="sidepanel">
         <a href="javascript:void(0)" class="closebtn">x</a>
         <a href="main.html"><i class="fa-solid fa-house"></i> Home</a>
         <a href="booksHTML.html"><i class="fa-solid fa-book"></i> Your books</a>
         <a href="javascript:void(0)" onclick="toggleSubmenu('characterarchiveSubmenu')">Character Archive</a>
-        <div id="characterarchiveSubmenu" class="submenu">
+        <!-- <div id="characterarchiveSubmenu" class="submenu"> -->
            <!----<a href="profiles.html">Profiles</a>-->
         </div>
        <!---- <a href="sublinks.html">Sublinks</a> -->
     </div>
-    
+    <button class="openbtn">☰</button>
+
     <button id="showProfileFormBtn">Create Profile</button>
     
     <div id="characterProfiles">
         <div id="profileFormContainer" class="modal-box">
+            
             <div class="modal-content">
                 <h2>Create Character Profile</h2>
                 <div class="profile-form">
-                    <input type="text" name="profileTitle" id="profileTitle" placeholder="Character Name">
+                    <input type="text" name="profileTitle" id="profileTitle" placeholder="Name*">
                     <div class="image-upload">
                         <input type="file" id="imageUpload" accept="image/*">
                         <img id="imagePreview" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
                     </div>
                     <br>
                     <p class="upload">Upload Image (max. 5MB)</p>
-                    <textarea id="profileContent" rows="10" placeholder="Describe your character"></textarea>
+                    <input type="text" class="profileDescription" placeholder="Middle name">
+                    <input type="text" class="profileDescription" placeholder="Last name">
+                    <input type="text" class="profileDescription" placeholder="Age">
+                    <input type="text" class="profileDescription" placeholder="Gender/Pronouns">
+                    <textarea id="profileContent" rows="6" placeholder="Describe your character"></textarea>
+                    <div class="button-container">
                     <button id="createProfileBtn">Create Profile</button>
                     <button id="closeProfileFormBtn">Close</button>
+                    <!-- <button id="getProfilesBtn">GET Profiles</button> -->
+
+                </div>
                 </div>
             </div>
         </div>
         <div id="profileContainer">
+            <div class="profile-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="Profile Image">
+                <div class="profile-name">Character Name</div>
+                <div class="profile-description">Character Description...</div>
+                <div class="profile-actions">  <!--  Buttons are now inside the profile card -->
+                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn">Delete</button>
+          
+                </div>
+            </div>
         </div>
     </div>
 
-    
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 
 
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
@@ -67,7 +86,6 @@
   const db = firebase.firestore();
 </script>
 
-<script src="profilesJS.js"></script>
-
+    <script src="profilesJS.js"></script>
 </body>
 </html>
