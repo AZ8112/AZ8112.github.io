@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('age').addEventListener('input', function() {
         this.value = this.value.replace(/[^0-9]/g, '');
     });
-    
 
     document.getElementById('showProfileFormBtn').addEventListener('click', function() {
         resetForm();
@@ -67,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Profile saved!');
             resetForm();
             document.getElementById('profileFormContainer').style.display = 'none';
-            addProfileCard(profileData, docRef.id); // Add new card dynamically
+            addProfileCard(profileData, docRef.id);
         } catch (error) {
             console.error('Error saving profile:', error);
         }
@@ -92,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             await db.collection('profiles').doc(id).delete();
             console.log('Profile deleted!');
-            document.getElementById(`profile-${id}`).remove(); // Remove only the deleted card
+            document.getElementById(`profile-${id}`).remove();
         } catch (error) {
             console.error('Error deleting profile:', error);
         }
@@ -103,22 +102,24 @@ document.addEventListener('DOMContentLoaded', function() {
         const profileCard = document.createElement('div');
         profileCard.classList.add('profile-card');
         profileCard.setAttribute('id', `profile-${id}`);
-
+        
         let imageHtml = (profile.imageSrc === '' || profile.imageSrc === defaultImageSrc)
             ? `<div class="placeholder">No Image</div>`
             : `<img src="${profile.imageSrc}" alt="${profile.firstName}">`;
-
-        let ageDisplay = profile.age ? `, ${profile.age}` : '';
-        let pronounsDisplay = profile.genderPronouns ? ` (${profile.genderPronouns})` : '';
-
+        
         profileCard.innerHTML = `
             ${imageHtml}
-            <div class="profile-name">${profile.firstName}${ageDisplay}${pronounsDisplay}</div>
+            <div class="profile-name">
+                ${profile.firstName ? profile.firstName : ''}<br>
+                ${profile.age ? profile.age : ''}<br>
+                ${profile.genderPronouns ? profile.genderPronouns : ''}
+            </div>
             <div class="profile-actions">
                 <button class="edit-btn" onclick="editProfile('${id}')">Edit</button>
                 <button class="delete-btn" onclick="deleteProfile('${id}')">Delete</button>
             </div>
         `;
+
         profileContainer.appendChild(profileCard);
     }
 
@@ -202,15 +203,16 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateProfileCard(id, profile) {
         const card = document.getElementById(`profile-${id}`);
         if (!card) return;
-
-        let ageDisplay = profile.age ? `, ${profile.age}` : '';
-        let pronounsDisplay = profile.genderPronouns ? ` (${profile.genderPronouns})` : '';
-
+    
         if (card.querySelector('img')) {
             card.querySelector('img').src = profile.imageSrc || defaultImageSrc;
         }
-
-        card.querySelector('.profile-name').textContent = `${profile.firstName}${ageDisplay}${pronounsDisplay}`;
+    
+        card.querySelector('.profile-name').innerHTML = `
+            ${profile.firstName ? profile.firstName : ''}<br>
+            ${profile.age ? profile.age : ''}<br>
+            ${profile.genderPronouns ? profile.genderPronouns : ''}
+        `;
     }
 });
 

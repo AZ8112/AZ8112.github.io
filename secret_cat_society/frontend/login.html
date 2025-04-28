@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecretCat Society with Nori</title>
+  <link rel="stylesheet" href="loginCSS.css">
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyAEr33Xkv6MLFddOVEXE1C0YfH3X1Bgk-c",
+        authDomain: "secretcatsociety-4b605.firebaseapp.com",
+        projectId: "secretcatsociety-4b605",
+        storageBucket: "secretcatsociety-4b605.appspot.com",
+        messagingSenderId: "264416108947",
+        appId: "1:264416108947:web:4606190d070caecb6e4866"
+
+
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+</head>
+<body>
+
+  <form class="register-form">
+    <div class="container">
+      <h1>Log in </h1>
+      <p>Enter your details to log into your account.</p>
+
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <label>
+        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px">
+        Remember me
+      </label>
+
+    <p>I don't have an account yet: <a href="register.html" style="color:rgb(30, 38, 255);">Register</a></p>
+
+
+      <div class="clearfix">
+        <div class="button-group">
+          <button type="button" class="cancelbtn">Cancel</button>
+          <button type="submit" class="loginbtn">Log in</button>
+        </div>
+        
+      </div>
+    </div>
+  </form>
+
+  <script src="loginJS.js"></script>
+
+</body>
+</html>
