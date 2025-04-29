@@ -1,9 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const db = firebase.firestore();
+
     const defaultImageSrc = 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png';
     let editMode = false;
     let currentEditId = null;
 
-    loadProfiles();
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            loadProfiles();
+        } else {
+            window.location.href = 'login.html'; // or wherever you want to kick them to
+        }
+    });
+    
 
     document.getElementById("profileTitle").addEventListener("input", function () {
         const maxLength = 40;
@@ -60,14 +69,18 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const docRef = await db.collection('profiles').add({
                 ...profileData,
+                userId: firebase.auth().currentUser.uid, //saves it to the user
+                email: firebase.auth().currentUser.email,
                 timestamp: new Date()
             });
             console.log('Profile saved to Firestore!');
             alert('Profile saved!');
             resetForm();
             document.getElementById('profileFormContainer').style.display = 'none';
+            profileData.userId = firebase.auth().currentUser.uid;
+            profileData.email = firebase.auth().currentUser.email;
             addProfileCard(profileData, docRef.id);
-        } catch (error) {
+                    } catch (error) {
             console.error('Error saving profile:', error);
         }
     }
@@ -77,7 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
         profileContainer.innerHTML = '';
 
         try {
-            const snapshot = await db.collection('profiles').orderBy('timestamp', 'desc').get();
+            const userId = firebase.auth().currentUser.uid;
+            const snapshot = await db.collection('profiles')
+                .where('userId', '==', userId)
+                .orderBy('timestamp', 'desc')
+                .get();
             snapshot.forEach((doc) => {
                 const profile = doc.data();
                 addProfileCard(profile, doc.id);

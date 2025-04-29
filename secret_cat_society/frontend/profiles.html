@@ -10,9 +10,10 @@
     <link rel="icon" href="images/mascotlogo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <!-- Firebase -->
+    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script> <!-- 🔥 you forgot THIS -->
 
     <script>
         const firebaseConfig = {
@@ -24,6 +25,9 @@
             appId: "1:264416108947:web:4606190d070caecb6e4866"
         };
         firebase.initializeApp(firebaseConfig);
+
+        // THIS was missing:
+        const db = firebase.firestore();
     </script>
 </head>
 

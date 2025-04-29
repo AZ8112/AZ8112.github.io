@@ -1,3 +1,36 @@
+// Book creation function
+async function createBook() {
+    const bookTitle = prompt('Enter the title of the book:');
+    if (!bookTitle) return;
+
+    const user = firebase.auth().currentUser;
+    if (!user) {
+        alert('Not logged in');
+        return;
+    }
+
+    try {
+        const db = firebase.firestore();
+        const bookData = {
+            title: bookTitle.length > 60 ? bookTitle.substring(0, 60) : bookTitle,
+            description: '',
+            cover: 'images/presetBook.png',
+            userId: user.uid,
+            email: user.email,
+            timestamp: new Date()
+        };
+
+        const docRef = await db.collection('books').add(bookData);
+        console.log('Book created with ID:', docRef.id);
+        alert('Book created!');
+        loadBooks();
+    } catch (error) {
+        console.error('Error creating book:', error);
+    }
+}
+
+
+
 // Nav bar START ---------------------------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -18,174 +51,78 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // nav bar END  --------------------------------------------------------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
-    
-    const bookList = document.getElementById('bookList');
-    const coverInput = document.getElementById('coverInput');
+// Main books page logic
+const db = firebase.firestore();
+const bookList = document.getElementById('bookList');
+const coverInput = document.getElementById('coverInput');
 
-    window.openNav = function() {
-        document.getElementById("mySidepanel").style.width = "250px";
-    };
+async function loadBooks() {
+    const user = firebase.auth().currentUser;
+    if (!user) return;
 
-    window.closeNav = function() {
-        document.getElementById("mySidepanel").style.width = "0";
-    };
+    bookList.innerHTML = '';
 
-    window.createBook = function() {
-        const bookTitle = prompt('Enter the title of the book:');
+    try {
+        const snapshot = await db.collection('books')
+            .where('userId', '==', user.uid)
+            .orderBy('timestamp', 'desc')
+            .get();
 
-        if (bookTitle) {
-            if (bookTitle.length > 60) {
-                alert("Title is too long; max. 60 characters");
-                bookTitle = bookTitle.substring(0, 60);
-            }
-
-            // Retrieve the existing books array from localStorage
-            let books = JSON.parse(localStorage.getItem('books')) || [];
-
-            // Check if the book already exists (optional, to avoid duplicates)
-            if (!books.some(book => book.title === bookTitle)) {
-                const newBook = {
-                    title: bookTitle,
-                    cover: 'images/presetBook.png' // Default cover image
-                };
-                books.push(newBook);  // Add the new book to the array
-
-                // Store the updated array back to localStorage
-                localStorage.setItem('books', JSON.stringify(books));
-                
-                addBookToList(newBook); 
-
-                // Optionally, make an API request to save the book
-                // saveBookToAPI(bookTitle);
-            } else {
-                alert('Book already exists.');
-            }
-            displayBooks();
-        }
-    };
-
-    // Add book to the UI
-    function addBookToList(book) {
-        const newBookElement = document.createElement('a');
-        newBookElement.classList.add('book-item');
-
-        const coverImage = document.createElement('img');
-        coverImage.src = book.cover;
-        coverImage.classList.add('book-cover');
-
-        const titleElement = document.createElement('span');
-        titleElement.textContent = book.title;
-        titleElement.classList.add('book-title');
-
-        const descriptionElement = document.createElement('div');
-        descriptionElement.classList.add('book-description');
-        const description = localStorage.getItem(`${book.title}_description`) || '';
-        descriptionElement.textContent = description.length > 0 ? (description.length > 600 ? description.substring(0, 600) + '...' : description) : 'No description available.';
-
-        newBookElement.href = `chapters.html?book=${encodeURIComponent(book.title)}`; // link to the book's chapters
-        newBookElement.appendChild(coverImage);
-        newBookElement.appendChild(titleElement);
-        newBookElement.appendChild(descriptionElement);
-        bookList.appendChild(newBookElement);
-
-        // Attach context menu event to the new book
-        newBookElement.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            showContextMenu(e, book.title, newBookElement);
+        snapshot.forEach(doc => {
+            const book = doc.data();
+            addBookToList(book, doc.id);
         });
+    } catch (error) {
+        console.error('Error loading books:', error);
     }
+}
 
-    // Display books in the list
-    function displayBooks() {
-        bookList.innerHTML = ''; // Clear the current list
-        const books = JSON.parse(localStorage.getItem('books')) || [];
-        books.forEach(book => {
-            addBookToList(book);
-        });
-    }
+function addBookToList(book, bookId) {
+    const newBookElement = document.createElement('a');
+    newBookElement.classList.add('book-item');
+    newBookElement.href = `chapters.html?bookId=${bookId}`;
 
- // Function to show context menu with delete, rename, and change cover options
-function showContextMenu(e, bookName, bookElement) {
-    // Remove any existing context menu
+    const coverImage = document.createElement('img');
+    coverImage.src = book.cover;
+    coverImage.classList.add('book-cover');
+
+    const titleElement = document.createElement('span');
+    titleElement.textContent = book.title;
+    titleElement.classList.add('book-title');
+
+    const descriptionElement = document.createElement('div');
+    descriptionElement.classList.add('book-description');
+    descriptionElement.textContent = book.description.length > 0 ? (book.description.length > 600 ? book.description.substring(0, 600) + '...' : book.description) : 'No description available.';
+
+    newBookElement.appendChild(coverImage);
+    newBookElement.appendChild(titleElement);
+    newBookElement.appendChild(descriptionElement);
+
+    bookList.appendChild(newBookElement);
+
+    newBookElement.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        showContextMenu(e, bookId, newBookElement);
+    });
+}
+
+function showContextMenu(e, bookId, bookElement) {
     const existingContextMenu = document.querySelector('.context-menu');
-    if (existingContextMenu) {
-        existingContextMenu.remove();
-    }
+    if (existingContextMenu) existingContextMenu.remove();
 
     const contextMenu = document.createElement('div');
     contextMenu.classList.add('context-menu');
     contextMenu.style.top = `${e.pageY}px`;
     contextMenu.style.left = `${e.pageX}px`;
 
-    const renameOption = document.createElement('div');
-    renameOption.textContent = 'Rename';
-    renameOption.addEventListener('click', () => {
-        renameBook(bookName, bookElement);
-        contextMenu.remove();
-    });
-
     const deleteOption = document.createElement('div');
-    deleteOption.textContent = 'Delete';
+    deleteOption.textContent = 'Delete Book';
     deleteOption.addEventListener('click', () => {
-        deleteBook(bookName, bookElement);
+        deleteBook(bookId, bookElement);
         contextMenu.remove();
     });
 
-    const changeCoverOption = document.createElement('div');
-    changeCoverOption.textContent = 'Change Cover';
-    changeCoverOption.addEventListener('click', () => {
-        coverInput.onchange = function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const fileReader = new FileReader();
-                fileReader.onload = function(event) {
-                    const newCoverBase64 = event.target.result;
-
-                    let books = JSON.parse(localStorage.getItem('books')) || [];
-                    const bookIndex = books.findIndex(book => book.title === bookName);
-
-                    if (bookIndex !== -1) {
-                        books[bookIndex].cover = newCoverBase64;
-                        localStorage.setItem('books', JSON.stringify(books));
-
-                        // Update the cover in the UI
-                        const coverImage = bookElement.querySelector('.book-cover');
-                        coverImage.src = newCoverBase64;
-                    } else {
-                        alert('Book not found.');
-                    }
-                };
-                fileReader.readAsDataURL(file);
-            }
-        };
-        coverInput.click(); // Trigger the file input dialog
-        contextMenu.remove();
-    });
-
-    // 🆕 Publish Option
-    const publishOption = document.createElement('div');
-    publishOption.textContent = 'Publish';
-    publishOption.addEventListener('click', () => {
-        let publishedBooks = JSON.parse(localStorage.getItem('publishedBooks')) || [];
-        const books = JSON.parse(localStorage.getItem('books')) || [];
-        const book = books.find(b => b.title === bookName);
-
-        if (!publishedBooks.some(b => b.title === bookName)) {
-            publishedBooks.push(book);
-            localStorage.setItem('publishedBooks', JSON.stringify(publishedBooks));
-            alert(`"${bookName}" has been published to the library.`);
-        } else {
-            alert(`"${bookName}" is already published.`);
-        }
-
-        contextMenu.remove();
-    });
-
-    contextMenu.appendChild(renameOption);
     contextMenu.appendChild(deleteOption);
-    contextMenu.appendChild(changeCoverOption);
-    contextMenu.appendChild(publishOption); // Add here
     document.body.appendChild(contextMenu);
 
     document.addEventListener('click', () => {
@@ -193,76 +130,26 @@ function showContextMenu(e, bookName, bookElement) {
     }, { once: true });
 }
 
+async function deleteBook(bookId, bookElement) {
+    if (!confirm('Are you sure you want to delete this book?')) return;
 
-    // Function to delete book
-    function deleteBook(bookName, bookElement) {
-        if (confirm(`Are you sure you want to delete the book "${bookName}"?`)) {
-            localStorage.removeItem(bookName);  // Removes the book's chapters
-            localStorage.removeItem(`${bookName}_description`);  // Removes the book's description
-
-            // Remove all related chapters and sublinks
-            const chapters = JSON.parse(localStorage.getItem(bookName)) || [];
-            chapters.forEach((chapter, index) => {
-                localStorage.removeItem(`chapter_${index}_open`);  // Remove chapter open state
-                chapter.sublinks.forEach(sublink => {
-                    localStorage.removeItem(`${bookName}_sublink_${sublink.word}`);  // Remove sublink data
-                });
-            });
-
-            bookElement.remove();  // Removes the book element
-            saveBooks();  // Updates the saved books list
-        }
+    try {
+        await db.collection('books').doc(bookId).delete();
+        console.log('Book deleted');
+        bookElement.remove();
+    } catch (error) {
+        console.error('Error deleting book:', error);
     }
+}
 
-    // Function to rename book
-    function renameBook(oldBookName, bookElement) {
-        const newBookName = prompt('Rename your book', oldBookName);
-        if (newBookName && newBookName !== oldBookName) {
-            bookElement.querySelector('.book-title').textContent = newBookName;
-            bookElement.href = `chapters.html?book=${encodeURIComponent(newBookName)}`;
-
-            const books = JSON.parse(localStorage.getItem('books')) || [];
-            const bookIndex = books.findIndex(book => book.title === oldBookName);
-            if (bookIndex !== -1) {
-                books[bookIndex].title = newBookName;
-                localStorage.setItem('books', JSON.stringify(books));
-            }
-
-            const chapters = localStorage.getItem(oldBookName);
-            if (chapters) {
-                localStorage.setItem(newBookName, chapters);
-                localStorage.removeItem(oldBookName);
-            }
-
-            // Update the description key in localStorage
-            const description = localStorage.getItem(`${oldBookName}_description`);
-            if (description) {
-                localStorage.setItem(`${newBookName}_description`, description);
-                localStorage.removeItem(`${oldBookName}_description`);
-            }
-        }
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        loadBooks();
+    } else {
+        window.location.href = 'login.html';
     }
-
-    // Save books to localStorage
-    function saveBooks() {
-        const books = [];
-        bookList.querySelectorAll('a.book-item').forEach(book => {
-            books.push({
-                title: book.querySelector('.book-title').textContent,
-                cover: book.querySelector('.book-cover').src
-            });
-        });
-        localStorage.setItem('books', JSON.stringify(books));
-    }
-
-    // Load books from localStorage
-    function loadBooks() {
-        const books = JSON.parse(localStorage.getItem('books')) || [];
-        books.forEach(book => {
-            addBookToList(book);
-        });
-    }
-
-    loadBooks();  // Initial load of books
 });
+
+
+
 
