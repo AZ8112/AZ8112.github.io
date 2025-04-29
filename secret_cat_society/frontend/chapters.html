@@ -27,60 +27,82 @@
         };
         firebase.initializeApp(firebaseConfig);
       </script>
-
 </head>
+
 <body>
  <!-- Redirect check -->
- <script>
-    const auth = firebase.auth();
-    auth.onAuthStateChanged(user => {
-      if (!user) {
+    <script>
+        const auth = firebase.auth();
+        auth.onAuthStateChanged(user => {
+            if (!user) {
         window.location.href = "login.html"; // Redirect to login if not authenticated
-      }
-    });
-  </script>
+            }
+        });
+    </script>
 
-<!-- Sidebar -->
-<div id="mySidepanel" class="sidepanel">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
-    <a href="main.html"><i class="fa-solid fa-house"></i>Home</a>
-    <a href="booksHTML.html"><i class="fa-solid fa fa-book"></i>Your books</a>
-    <div id="booksSubmenu" class="submenu">
-        <link rel="icon" href="images/mascotlogo.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Navbar START -->
+    <div class="navbar">
+        <a class="active" href="main.html"><i class="fa-solid fa-house"></i>    Home</a>
 
-        <!-- Books will be dynamically added here -->
+        <div class="dropdown">
+            <button class="dropbtn"><i class="fa-solid fa-bookmark"></i>  Books</button>
+            <div class="dropdown-content">
+                <a href="booksHTML.html">My Books</a>
+            </div>
+        </div>
+    
+    
+
+        <!-- Dropdown for "Books" -->
+        <div class="dropdown">
+            <button class="dropbtn"><i class="fa-solid fa-user-group"></i>   Characters</button>
+            <div class="dropdown-content">
+                <a href="profiles.html">Profiles</a>
+                <a href="#LINK_NEEDED_HERE">Relationships</a>
+            </div>
+        </div>
+
+        <!-- this is for the uhh TEMPORARY library-->
+        <a class="active" href="library.html">Library</a>
+
+        <!-- Create Book Button inside a separate dropdown (below Books) -->
     </div>
-    <a href="javascript:void(0)" onclick="toggleSubmenu('characterarchiveSubmenu')">Character Archive</a>
-    <div id="characterarchiveSubmenu" class="submenu">
-        <a href="profiles.html"><i class="fa-solid fa-address-book"></i>Profiles</a>
+<!-- Navbar END -->
+
+
+
+
+
+
+    <!-- Adding chapter form -->
+    <h1 id="header"></h1>    
+    <!-- Book preview START -->
+    <div class="book-preview">
+        <h2 class="descriptionHeader">Book Description</h2>
+        <textarea id="descriptionInput" placeholder="Write your description here..." maxlength="1000"></textarea>
+        <div id="charCount">0 / 1000</div>
+        <button id="saveDescription">Save Description</button>
     </div>
-    <!--<a href="sublinks.html">Sublinks</a> -->
-</div>
-<!-- Open button -->
-<button class="openbtn" onclick="openNav()">☰</button>
+    <!-- Book preview END -->
+    <div class="add-chapter-form">
+        <input type="text" name="chapterTitle" id="chapterTitle" placeholder="Chapter Title">
+    <div id="chapterContent"></div> <!-- chapterContent IS THE QUILL EDITOR, the input size is changed HERE-->
+        <button onclick="addChapter()">Create Chapter</button>
+        <button id="updateButton" onclick="updateChapter()" style="display:none;">Update Chapter</button>
+    </div>
 
-<!-- Adding chapter form -->
-<h1 id="header"></h1>
-<div class="add-chapter-form">
-    <input type="text" name="chapterTitle" id="chapterTitle" placeholder="Chapter Title">
-    <div id="chapterContent" style="height: 300px;"></div>
-    <button onclick="addChapter()">Create Chapter</button>
-    <button id="updateButton" onclick="updateChapter()" style="display:none;">Update Chapter</button>
-</div>
-
-<!-- Chapter list -->
-<div class="chapter-list" id="chapterList">
+    <!-- Chapter list -->
+    <div class="chapter-list" id="chapterList">
     <!-- Chapters will be added here -->
-</div>
+    </div>
 
 <!-- Sublink Popup -->
-<div id="sublinkPopup" style="display: none; position: fixed; z-index: 100; left: 50%; top: 50%; transform: translate(-50%, -50%); background-color: white; border: 2px solid #dcb6e4; padding: 20px; border-radius: 10px;">
-    <h2>Create Sublink for <span id="selectedWord"></span></h2>
-    <input type="text" id="sublinkTitle" placeholder="Sublink Title">
-    <textarea id="sublinkContent" placeholder="Sublink Content" rows="5"></textarea>
-    <button onclick="saveSublink()">Create Sublink</button>
-    <button onclick="closeSublinkPopup()">Cancel</button>
+<div id="sublinkPopup" class="popup">
+<h2>Create Sublink for <span id="selectedWord"></span></h2>
+<input type="text" id="sublinkTitle" placeholder="Sublink Title">
+<textarea id="sublinkContent" placeholder="Sublink Content" rows="5"></textarea>
+<button onclick="saveSublink()">Update Sublink</button>
+<button onclick="closeSublinkPopup()">Cancel</button>
 </div>
 
 

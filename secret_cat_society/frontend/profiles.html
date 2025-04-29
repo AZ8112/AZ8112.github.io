@@ -36,15 +36,35 @@
         });
       </script>
       
-    <!-- Sidebar -->
-    <div id="mySidepanel" class="sidepanel">
-        <a href="javascript:void(0)" class="closebtn">x</a>
-        <a href="main.html"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="booksHTML.html"><i class="fa-solid fa-book"></i> Your books</a>
-        <a href="javascript:void(0)" onclick="toggleSubmenu('characterarchiveSubmenu')">Character Archive</a>
-        <!-- Future submenu here -->
+    <!-- Navbar START -->
+    <div class="navbar">
+        <a class="active" href="main.html"><i class="fa-solid fa-house"></i>    Home</a>
+
+        <div class="dropdown">
+            <button class="dropbtn"><i class="fa-solid fa-bookmark"></i>  Books</button>
+            <div class="dropdown-content">
+                <a href="booksHTML.html">My Books</a>
+            </div>
+        </div>
+        
+        
+
+        <!-- Dropdown for "Books" -->
+        <div class="dropdown">
+            <button class="dropbtn"><i class="fa-solid fa-user-group"></i>   Characters</button>
+            <div class="dropdown-content">
+                <a href="profiles.html">Profiles</a>
+                <a href="#LINK_NEEDED_HERE">Relationships</a>
+            </div>
+        </div>
+
+          <!-- this is for the uhh TEMPORARY library-->
+          <a class="active" href="library.html">Library</a>
+
+        <!-- Create Book Button inside a separate dropdown (below Books) -->
+
     </div>
-    <button class="openbtn">☰</button>
+    <!-- Navbar END -->
 
     <!-- Create Profile Button -->
     <button id="showProfileFormBtn">Create Profile</button>

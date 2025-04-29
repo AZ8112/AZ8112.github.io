@@ -1,10 +1,90 @@
 body {
-    background-image: url('images/homepage_local.png');
+    background-image: url('images/purplebg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
   }
 
+/* --------------------- top nav START ---------------------------------------- */
+
+/* Navbar container */
+.navbar {
+    width: 100%;
+    height: 65px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Links inside the navbar */
+.navbar a, .dropbtn {
+    font-size: 20px;
+    color: white;
+    text-align: left;
+    padding: 20px 20px;
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-right: 20px; /* Adjust spacing as needed */
+    font-family: Arial, sans-serif;
+}
+
+/* Change link color on hover */
+.navbar a:hover, .dropbtn:hover {
+    color: red;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown menu (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 180px;
+    z-index: 1000;
+    top: 100%; /* Ensures dropdown is below the button */
+    left: 0;
+    width: 100%; /* Ensure full width */
+}
+
+/* Links inside the dropdown */
+.dropdown-content a, .dropdown-content button {
+    color: black;
+    padding: 12px;
+    text-decoration: none;
+    display: block;
+    width: 100%; /* Make the button fill the entire block */
+    box-sizing: border-box; /* Ensure padding doesn't exceed width */
+}
+
+/* Change dropdown link color on hover */
+.dropdown-content a:hover, .dropdown-content button:hover {
+    background-color: #e9b4e6;
+    color: rgb(160, 67, 155);
+}
+
+/* Show dropdown when hovering over the dropdown container */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* Prevent page content from being hidden under navbar */
+body {
+    padding-top: 100px;
+}
+
+/* --------------------- top nav END ---------------------------------------- */
 
 .modal-box {
     display: flex;
@@ -41,11 +121,12 @@ h2 {
 
 #showProfileFormBtn {
     position: absolute;
-    top: 10px;
+    top: 5px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1000;
     padding: 10px 100px;
-    background-color: #e20069ce;
+    background-color: #5d0e7ace;
     color: white;
     border-radius: 5px;
     border-style: solid;
@@ -288,44 +369,6 @@ h2 {
     font-family: Helvetica, sans-serif;
 }
 
-.sidepanel a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: rgb(243, 227, 243);
-    display: block;
-    transition: 0.3s;
-}
-
-.sidepanel a:hover {
-    color: grey;
-}
-
-.sidepanel .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-.submenu {
-    display: none;
-    padding-left: 20px;
-}
-
-.submenu a {
-    font-size: 20px; 
-    color: rgb(243, 227, 243); 
-}
-
-.submenu a:hover {
-    color: grey; 
-}
-
-.sidepanel a:hover { 
-    color: grey;
-}
 
 .upload{
     padding-top: 2%;
