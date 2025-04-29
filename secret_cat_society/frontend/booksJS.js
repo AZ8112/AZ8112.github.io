@@ -265,3 +265,4 @@ function showContextMenu(e, bookName, bookElement) {
 
     loadBooks();  // Initial load of books
 });
+

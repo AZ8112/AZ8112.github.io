@@ -36,10 +36,9 @@ document.querySelector(".loginbtn").addEventListener("click", function (e) {
       alert(error.message);
     });
     
-    document.querySelector(".cancelbtn").addEventListener("click", function () {
-    window.location.href = "main.html"; // Or whatever page you want to cancel back to
-  });
-  
 });
 
+  document.querySelector(".cancelbtn").addEventListener("click", function () {
+    window.location.href = "main.html"; // Or whatever page you want to cancel back to
+  });
 

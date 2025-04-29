@@ -1,89 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SecretCat society with Nori</title>
-        <link rel="stylesheet" href="CSSmain.css">
-        <link rel="icon" href="images/mascotlogo.png" type="image/x-icon">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecretCat Society with Nori</title>
+
+  <link rel="stylesheet" href="CSSmain.css">
+  <link rel="icon" href="images/mascotlogo.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAEr33Xkv6MLFddOVEXE1C0YfH3X1Bgk-c",
+      authDomain: "secretcatsociety-4b605.firebaseapp.com",
+      projectId: "secretcatsociety-4b605",
+      storageBucket: "secretcatsociety-4b605.appspot.com", <!-- CORRECTED -->
+      messagingSenderId: "264416108947",
+      appId: "1:264416108947:web:4606190d070caecb6e4866"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+</head>
+
 <body>
-
-<div class="main-heading container">
-    <h1>Hello fellow user! <i class="fa-solid fa-pen-nib"></i></h1>
-    <p>Welcome to SecretCat society with Nori, the ultimate bookwriting tool!
-        Here you can write to your hearts content, and have everything organised 
-        in an easy-to-understand format.
-    </p>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="column">
-            <h2></i>Books <i class="fa-solid fa-book"></i></i></i></h2>
-            <p>Here you can write your books chapter by chapter!
-                You can also link certain words to create a sublink to it, which then allows
-                you to explain the highlighted content.
-            </p>
-                <br>
-            <a href="booksHTML.html">Start writing</a>
-        </div>
-        <div class="column">
-            <h2>Character archive <i class="fa-solid fa-address-book"></i></h2>
-
-            <p>Here you can create characters that play a role in your books.
-                You can give them a profile picture and write in their backstory.
-                This helps you keep track on who is who!</p>
-
-                <br>
-            <a href="profiles.html">Create a character</a>
-        </div>
-    </div>
-</div>
-
-      
-
-<!--Sidebar-->
-    <!-- <div id="mySidepanel" class="sidepanel">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
-        <a href="booksHTML.html"><i class="fa-solid fa-book"></i> Your books</a>
-        <a href="javascript:void(0)" onclick="toggleSubmenu('characterarchiveSubmenu')">Character Archive</a>
-        <div id="characterarchiveSubmenu" class="submenu">
-        <a href="profiles.html"><i class="fa-solid fa-address-book"></i> Profiles</a>
-    </div>
-</div> -->
 
 <!-- Navbar START -->
 <div class="navbar">
-    <a class="active" href="main.html"><i class="fa-solid fa-house"></i>    Home</a>
+    <a class="active" href="main.html"><i class="fa-solid fa-house"></i> Home</a>
 
     <div class="dropdown">
-        <button class="dropbtn"><i class="fa-solid fa-bookmark"></i>  Books</button>
+        <button class="dropbtn"><i class="fa-solid fa-bookmark"></i> Books</button>
         <div class="dropdown-content">
             <a href="booksHTML.html">My Books</a>
         </div>
     </div>
 
-    <!-- Dropdown for "Books" -->
     <div class="dropdown">
-        <button class="dropbtn"><i class="fa-solid fa-user-group"></i>   Characters</button>
+        <button class="dropbtn"><i class="fa-solid fa-user-group"></i> Characters</button>
         <div class="dropdown-content">
             <a href="profiles.html">Profiles</a>
             <a href="#LINK_NEEDED_HERE">Relationships</a>
         </div>
     </div>
 
-    <!-- this is for the uhh TEMPORARY library-->
     <a class="active" href="library.html">Library</a>
 
-    <!-- Create Book Button inside a separate dropdown (below Books) -->
-
+    <!-- User Menu -->
+    <div class="user-menu">
+        <i class="fa-solid fa-user-circle" id="userIcon"></i>
+        <div id="userDropdown" class="user-dropdown">
+          <p id="userEmail">Logged in as</p>
+          <button onclick="logout()">Log out</button>
+        </div>
+    </div>
 </div>
 <!-- Navbar END -->
 
+<!-- Main Heading -->
+<div class="main-heading container">
+  <h1>Hello fellow user! <i class="fa-solid fa-pen-nib"></i></h1>
+  <p>Welcome to SecretCat society with Nori, the ultimate bookwriting tool!
+    Here you can write to your heart's content, and have everything organized
+    in an easy-to-understand format.
+  </p>
+</div>
 
+<!-- Sections -->
+<div class="container">
+  <div class="row">
+    <div class="column">
+      <h2>Books <i class="fa-solid fa-book"></i></h2>
+      <p>Here you can write your books chapter by chapter! You can also link
+         certain words to create a sublink to it, which then allows you to explain the highlighted content.
+      </p>
+      <br>
+      <a href="booksHTML.html">Start writing</a>
+    </div>
+
+    <div class="column">
+      <h2>Character Archive <i class="fa-solid fa-address-book"></i></h2>
+      <p>Create characters that play a role in your books. Add profile pictures and backgrounds!
+         Keep track of who is who.
+      </p>
+      <br>
+      <a href="profiles.html">Create a character</a>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
 <script src="JavaScriptMain.js"></script>
+<script src="account.js"></script>
 
 </body>
 </html>

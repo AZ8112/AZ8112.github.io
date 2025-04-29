@@ -229,3 +229,4 @@ function toggleSubmenu(submenuId) {
 }
 document.querySelector('.openbtn').addEventListener('click', openNav);
 document.querySelector('.closebtn').addEventListener('click', closeNav);
+
