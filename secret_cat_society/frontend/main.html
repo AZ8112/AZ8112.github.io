@@ -31,10 +31,11 @@
         </div>
         <div class="column">
             <h2>Character archive <i class="fa-solid fa-address-book"></i></h2>
+
             <p>Here you can create characters that play a role in your books.
                 You can give them a profile picture and write in their backstory.
-                This helps you keep track on who is who!
-            </p>
+                This helps you keep track on who is who!</p>
+
                 <br>
             <a href="profiles.html">Create a character</a>
         </div>
@@ -44,18 +45,43 @@
       
 
 <!--Sidebar-->
-<div id="mySidepanel" class="sidepanel">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
-    <a href="booksHTML.html"><i class="fa-solid fa-book"></i> Your books</a>
-    <a href="javascript:void(0)" onclick="toggleSubmenu('characterarchiveSubmenu')">Character Archive</a>
-    <div id="characterarchiveSubmenu" class="submenu">
-    <a href="profiles.html"><i class="fa-solid fa-address-book"></i> Profiles</a>
+    <!-- <div id="mySidepanel" class="sidepanel">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+        <a href="booksHTML.html"><i class="fa-solid fa-book"></i> Your books</a>
+        <a href="javascript:void(0)" onclick="toggleSubmenu('characterarchiveSubmenu')">Character Archive</a>
+        <div id="characterarchiveSubmenu" class="submenu">
+        <a href="profiles.html"><i class="fa-solid fa-address-book"></i> Profiles</a>
     </div>
-    <!-- optional <a href="sublinks.html">Sublinks</a> -->
+</div> -->
+
+<!-- Navbar START -->
+<div class="navbar">
+    <a class="active" href="main.html"><i class="fa-solid fa-house"></i>    Home</a>
+
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa-solid fa-bookmark"></i>  Books</button>
+        <div class="dropdown-content">
+            <a href="booksHTML.html">My Books</a>
+        </div>
     </div>
 
-<!--Open button-->
-<button class="openbtn" onclick="openNav()">☰</button>
+    <!-- Dropdown for "Books" -->
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa-solid fa-user-group"></i>   Characters</button>
+        <div class="dropdown-content">
+            <a href="profiles.html">Profiles</a>
+            <a href="#LINK_NEEDED_HERE">Relationships</a>
+        </div>
+    </div>
+
+    <!-- this is for the uhh TEMPORARY library-->
+    <a class="active" href="library.html">Library</a>
+
+    <!-- Create Book Button inside a separate dropdown (below Books) -->
+
+</div>
+<!-- Navbar END -->
+
 
 <script src="JavaScriptMain.js"></script>
 

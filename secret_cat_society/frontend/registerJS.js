@@ -40,4 +40,11 @@ document.querySelector(".signup").addEventListener("click", function (e) {
       console.error("Registration error:", error.message);
       alert(error.message);
     });
+
+    
+  
 });
+
+document.querySelector(".cancelbtn").addEventListener("click", function () {
+      window.location.href = "main.html"; // or wherever you want to send them
+  });

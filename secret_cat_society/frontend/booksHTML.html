@@ -37,26 +37,60 @@
         });
       </script>
 
-    <button class="createbtn" onclick="createBook()">Create Book</button>
-    <div id="bookList"></div>
+   <!-- Navbar START -->
+   <div class="navbar">
+    <a class="active" href="main.html"><i class="fa-solid fa-house"></i>    Home</a>
 
-    <!-- Sidebar -->
-    <div id="mySidepanel" class="sidepanel">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
-        <a href="main.html"><i class="fa-solid fa-house"></i> Home</a>
-        <!--<a href="booksHTML.html">Your books</a>
-        <div id="booksSubmenu" class="submenu">
-            Books will be dynamically added here 
-        </div>-->
-        <a href="javascript:void(0)" onclick="toggleSubmenu('characterarchiveSubmenu')">Character Archive</a>
-        <div id="characterarchiveSubmenu" class="submenu">
-            <a href="profiles.html"><i class="fa-solid fa-address-book"></i> Profiles</a>
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa-solid fa-bookmark"></i>  Books</button>
+        <div class="dropdown-content">
+            <button class="createbtn" onclick="createBook()">Create Book</button>
+            <a href="booksHTML.html">My Books</a>
         </div>
-       <!---- <a href="sublinks.html">Sublinks</a>-->
     </div>
-    <!-- Open button -->
-    <button class="openbtn" onclick="openNav()">☰</button>
+    
+    
 
+    <!-- Dropdown for "Books" -->
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa-solid fa-user-group"></i>   Characters</button>
+        <div class="dropdown-content">
+            <a href="profiles.html">Profiles</a>
+            <a href="#LINK_NEEDED_HERE">Relationships</a>
+        </div>
+    </div>
+
+      <!-- this is for the uhh TEMPORARY library-->
+      <a class="active" href="library.html">Library</a>
+
+    <!-- Create Book Button inside a separate dropdown (below Books) -->
+
+</div>
+<!-- Navbar END -->
+
+
+
+<!-- cover START -->
+
+<!-- File input for cover image -->
+<input type="file" id="coverInput" accept="image/*" style="display:none;">
+
+
+<!-- cover END -->
+
+<!-- Book List Section -->
+<div id="bookList"></div>
+
+<!-- Rename Book Modal START -->
+<div id="renameModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Rename Book</h2>
+        <input type="text" id="newBookName" placeholder="Enter new book name">
+        <button id="renameBookButton">Rename</button>
+    </div>
+</div>
+<!-- Rename Book Modal END -->
 
     <script src="booksJS.js"></script>
 </body>

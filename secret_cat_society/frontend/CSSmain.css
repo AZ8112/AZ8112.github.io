@@ -1,8 +1,9 @@
 body {
-    background-image: url('images/homepagemascot.png');
+    background-image: url('images/purplebg.jpg');
     background-repeat: no-repeat; /* Prevents the image from repeating */
     background-attachment: fixed; /* Keeps the image fixed while scrolling */
     background-size: cover;
+    font-family: Arial, sans-serif;
 
   }
 
@@ -11,106 +12,117 @@ body {
     display: flex;
     flex-direction: column ;
     background-color: blueviolet;
-    font-family: 'komika font', Times, serif;
+    font-family: Arial, sans-serif;
     color: black;
 }
 
 
+
+ 
 h1 { text-align: center;}
 
-.sidepanel {
-    height: 100%;
-    width: 0;
+/* --------------------- top nav START ---------------------------------------- */
+
+/* Navbar container */
+.navbar {
+    width: 100%;
+    height: 60px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
     position: fixed;
-    z-index: 1;
     top: 0;
     left: 0;
-    background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(31, 1, 25));
-    overflow-x: hidden;
-    padding-top: 60px;
-    transition: 0.5s;
-    font-family: Helvetica, sans-serif;
-
-
+    z-index: 1000;
 }
 
-.sidepanel a {
-    padding: 8px 8px 8px 32px;
+/* Links inside the navbar */
+.navbar a, .dropbtn {
+    font-size: 18px;
+    color: white;
+    text-align: left;
+    padding: 20px 20px;
     text-decoration: none;
-    font-size: 25px;
-    color: rgb(243, 227, 243);
-    display: block;
-    transition: 0.3s;
-}
-
-.submenu {
-    display: none; 
-    padding-left: 20px; 
-}
-
-.submenu a {
-    font-size: 20px; 
-    color: rgb(243, 227, 243); 
-}
-
-.submenu a:hover {
-    color: grey; 
-}
-
-.sidepanel a:hover { 
-    color: grey;
-}
-
-.sidepanel .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-.openbtn {
-    font-size: 20px;
-    font-family: fantasy;
-    cursor: pointer;
-    padding: 10px 15px;
-    background-color: rgba(25, 2, 31, 0.974);
-    color: lavender;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #e20069ce;
-}
-
-.openbtn:hover {
-    background-color: grey;
-} 
-
-#defaultBook {
-    display: block;
-    margin: 10px 0;
-    padding: 5px;
-    font-size: 18px;
-    width: calc(100% - 64px);
-}
-
-button {
-    display: block;
-    margin: 10px 0;
-    padding: 5px 10px;
-    font-size: 18px;
-    background-color: rgba(59, 3, 55, 0.974);
-    color: rgb(255, 255, 255);
     border: none;
+    background: none;
     cursor: pointer;
-    border-radius: 25% 10%;
+    margin-right: 20px; /* Adjust spacing as needed */
+    font-family: Arial, sans-serif;
+    
 }
 
-button:hover {
-    background-color: grey;
+
+/* Change link color on hover */
+.navbar a:hover, .dropbtn:hover {
+    color: red;
 }
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown menu (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 180px;
+    z-index: 1000;
+    top: 100%; /* Ensures dropdown is below the button */
+    left: 0;
+    width: 100%; /* Ensure full width */
+}
+
+/* Links inside the dropdown */
+.dropdown-content a, .dropdown-content button {
+    color: black;
+    padding: 12px;
+    text-decoration: none;
+    display: block;
+    width: 100%; /* Make the button fill the entire block */
+    box-sizing: border-box; /* Ensure padding doesn't exceed width */
+}
+
+/* Change dropdown link color on hover */
+.dropdown-content a:hover, .dropdown-content button:hover {
+    background-color: #e9b4e6;
+    color: rgb(160, 67, 155);
+}
+
+/* Show dropdown when hovering over the dropdown container */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Create Book button inside dropdown */
+.dropdown-content button.createbtn {
+    background-color: #f9f9f9;
+    color: black;
+    padding: 12px;
+    border: none;
+    width: 100%; /* Full width */
+    text-align: left;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.dropdown-content button.createbtn:hover {
+    background-color: #e9b4e6;
+    color: rgb(160, 67, 155);
+}
+
+/* Prevent page content from being hidden under navbar */
+body {
+    padding-top: 100px;
+}
+
+/* --------------------- top nav END ---------------------------------------- */
+
+
+
+
 
 .container {
     max-width: 900px;
@@ -122,14 +134,14 @@ button:hover {
     text-align: left;
     margin-top: 130px;
     margin-left: 120px;
-    font-family: Helvetica, sans-serif;
+    font-family: Arial, sans-serif;
 
 }
 
 .main-heading h1 {
     font-size: 3em;
     text-align: left;
-    font-family: Helvetica, sans-serif;
+    font-family: Arial, sans-serif;
     color:rgba(226, 209, 214, 0.974)
 }
 
@@ -151,13 +163,13 @@ button:hover {
     padding: 30px;
     text-align: left;
     border-radius: 10%;
-    font-family: Helvetica, sans-serif;
+    font-family: Arial, sans-serif;
     color:rgba(226, 209, 214, 0.974)
 }
 
 .column h2 {
     font-size: 1.8em;
-    font-family: Helvetica, sans-serif;
+    font-family: Arial, sans-serif;
     margin-bottom: 10px;
     color:rgba(226, 209, 214, 0.974)
 }
@@ -165,7 +177,7 @@ button:hover {
 .column p {
     font-size: 1.1em;
     margin-bottom: 10px;
-    font-family: Helvetica, sans-serif;
+    font-family: Arial, sans-serif;
     color:rgba(226, 209, 214, 0.974)
 }
 
@@ -179,5 +191,4 @@ button:hover {
 
 .fa-regular, fa-books {
     color:rgba(226, 209, 214, 0.974)
-
 }
