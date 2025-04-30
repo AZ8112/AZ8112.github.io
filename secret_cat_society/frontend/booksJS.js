@@ -1,5 +1,3 @@
-// --- Firebase Books with Context Menu (Rename, Cover, Publish, Delete) ---
-
 const db = firebase.firestore();
 const bookList = document.getElementById('bookList');
 const coverInput = document.getElementById('coverInput');
@@ -25,32 +23,34 @@ async function loadBooks() {
 }
 
 function addBookToList(book, bookId) {
-    const newBookElement = document.createElement('a');
-    newBookElement.classList.add('book-item');
-    newBookElement.href = `chapters.html?bookId=${bookId}`;
+    const bookLink = document.createElement('a');
+    bookLink.classList.add('book-item');
+    bookLink.href = `chapters.html?bookId=${bookId}`;
 
-    const coverImage = document.createElement('img');
-    coverImage.src = book.cover;
-    coverImage.classList.add('book-cover');
+    const coverImg = document.createElement('img');
+    coverImg.src = book.cover || 'images/presetBook.png';
+    coverImg.classList.add('book-cover');
 
-    const titleElement = document.createElement('span');
-    titleElement.textContent = book.title;
-    titleElement.classList.add('book-title');
+    const titleDiv = document.createElement('div');
+    titleDiv.classList.add('book-title');
+    titleDiv.textContent = book.title || 'Untitled';
 
-    const descriptionElement = document.createElement('div');
-    descriptionElement.classList.add('book-description');
-    descriptionElement.textContent = book.description?.length > 0
-        ? (book.description.length > 600 ? book.description.substring(0, 600) + '...' : book.description)
+    const descDiv = document.createElement('div');
+    descDiv.classList.add('book-description');
+    descDiv.textContent = book.description?.trim()
+        ? (book.description.length > 600
+            ? book.description.substring(0, 600) + '...'
+            : book.description)
         : 'No description available.';
 
-    newBookElement.appendChild(coverImage);
-    newBookElement.appendChild(titleElement);
-    newBookElement.appendChild(descriptionElement);
-    bookList.appendChild(newBookElement);
+    bookLink.appendChild(coverImg);
+    bookLink.appendChild(titleDiv);
+    bookLink.appendChild(descDiv);
+    bookList.appendChild(bookLink);
 
-    newBookElement.addEventListener('contextmenu', (e) => {
+    bookLink.addEventListener('contextmenu', (e) => {
         e.preventDefault();
-        showContextMenu(e, bookId, book, newBookElement);
+        showContextMenu(e, bookId, book, bookLink);
     });
 }
 
@@ -85,22 +85,37 @@ function showContextMenu(e, bookId, bookData, bookElement) {
     };
 
     const changeCover = document.createElement('div');
-    changeCover.textContent = 'Change Cover';
-    changeCover.onclick = () => {
-        coverInput.onchange = async (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = async (e) => {
-                    await db.collection('books').doc(bookId).update({ cover: e.target.result });
-                    loadBooks();
-                };
-                reader.readAsDataURL(file);
+changeCover.textContent = 'Change Cover';
+changeCover.onclick = () => {
+    coverInput.onchange = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (file.size > 1 * 1024 * 1024) { // 1MB in bytes
+            alert("Image is too large. Please choose an image under 1MB.");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+            const dataUrl = e.target.result;
+            try {
+                await db.collection('books').doc(bookId).update({ cover: dataUrl });
+                loadBooks();
+            } catch (err) {
+                console.error("Error updating cover:", err);
+                alert("Failed to update cover image.");
             }
         };
-        coverInput.click();
-        menu.remove();
+        reader.onerror = () => {
+            alert("Error reading file. Please try again.");
+        };
+        reader.readAsDataURL(file);
     };
+    coverInput.click();
+    menu.remove();
+};
+
 
     const publish = document.createElement('div');
     publish.textContent = 'Publish';

@@ -7,14 +7,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const quill = new Quill('#chapterContent', { theme: 'snow' });
 
     const header = document.getElementById('header');
-
     if (bookId) {
         db.collection('books').doc(bookId).get().then(doc => {
             if (doc.exists) {
                 const bookData = doc.data();
                 header.textContent = `Book: ${bookData.title || "Untitled"} - Chapters`;
-                document.getElementById("descriptionInput").value = bookData.description || "";
-                document.getElementById("charCount").textContent = `${(bookData.description || "").length} / 1000`;
             } else {
                 header.textContent = "Book not found";
             }
@@ -25,21 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         header.textContent = 'Your Chapters';
     }
-
-    document.getElementById("saveDescription").addEventListener("click", function () {
-        const description = document.getElementById("descriptionInput").value;
-        if (!bookId) return alert("Book ID missing.");
-        if (!description) return alert("Description can't be empty.");
-        db.collection("books").doc(bookId).update({
-            description: description
-        }).then(() => {
-            alert("Description saved!");
-        }).catch(err => {
-            console.error("Error saving description:", err);
-            alert("Failed to save description.");
-        });
-    });
-
+    
     function getChapterContent() {
         return quill.root.innerHTML;
     }
@@ -223,6 +206,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
+    // Global handlers
     window.addChapter = addChapter;
     window.updateChapter = updateChapter;
     window.renderChapters = renderChapters;
