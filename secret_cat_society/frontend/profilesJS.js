@@ -8,12 +8,13 @@ document.addEventListener('DOMContentLoaded', function() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             loadProfiles();
+            patchProfilesWithUserId(); 
         } else {
-            window.location.href = 'login.html'; // or wherever you want to kick them to
+            window.location.href = 'login.html';
         }
     });
     
-
+    
     document.getElementById("profileTitle").addEventListener("input", function () {
         const maxLength = 40;
         if (this.value.length > maxLength) {
