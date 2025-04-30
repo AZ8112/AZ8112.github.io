@@ -1,57 +1,5 @@
-// Book creation function
-async function createBook() {
-    const bookTitle = prompt('Enter the title of the book:');
-    if (!bookTitle) return;
+// --- Firebase Books with Context Menu (Rename, Cover, Publish, Delete) ---
 
-    const user = firebase.auth().currentUser;
-    if (!user) {
-        alert('Not logged in');
-        return;
-    }
-
-    try {
-        const db = firebase.firestore();
-        const bookData = {
-            title: bookTitle.length > 60 ? bookTitle.substring(0, 60) : bookTitle,
-            description: '',
-            cover: 'images/presetBook.png',
-            userId: user.uid,
-            email: user.email,
-            timestamp: new Date()
-        };
-
-        const docRef = await db.collection('books').add(bookData);
-        console.log('Book created with ID:', docRef.id);
-        alert('Book created!');
-        loadBooks();
-    } catch (error) {
-        console.error('Error creating book:', error);
-    }
-}
-
-
-
-// Nav bar START ---------------------------------------------------------------------------
-
-document.addEventListener("DOMContentLoaded", function () {
-    let dropdown = document.querySelector(".dropdown");
-    let button = document.querySelector(".dropbtn");
-
-    button.addEventListener("click", function (event) {
-        event.stopPropagation(); // Prevents closing when clicking the button
-        dropdown.classList.toggle("show");
-    });
-
-    document.addEventListener("click", function (event) {
-        if (!dropdown.contains(event.target)) {
-            dropdown.classList.remove("show"); // Close dropdown when clicking outside
-        }
-    });
-});
-
-// nav bar END  --------------------------------------------------------------------------------
-
-// Main books page logic
 const db = firebase.firestore();
 const bookList = document.getElementById('bookList');
 const coverInput = document.getElementById('coverInput');
@@ -61,7 +9,6 @@ async function loadBooks() {
     if (!user) return;
 
     bookList.innerHTML = '';
-
     try {
         const snapshot = await db.collection('books')
             .where('userId', '==', user.uid)
@@ -92,64 +39,112 @@ function addBookToList(book, bookId) {
 
     const descriptionElement = document.createElement('div');
     descriptionElement.classList.add('book-description');
-    descriptionElement.textContent = book.description.length > 0 ? (book.description.length > 600 ? book.description.substring(0, 600) + '...' : book.description) : 'No description available.';
+    descriptionElement.textContent = book.description?.length > 0
+        ? (book.description.length > 600 ? book.description.substring(0, 600) + '...' : book.description)
+        : 'No description available.';
 
     newBookElement.appendChild(coverImage);
     newBookElement.appendChild(titleElement);
     newBookElement.appendChild(descriptionElement);
-
     bookList.appendChild(newBookElement);
 
     newBookElement.addEventListener('contextmenu', (e) => {
         e.preventDefault();
-        showContextMenu(e, bookId, newBookElement);
+        showContextMenu(e, bookId, book, newBookElement);
     });
 }
 
-function showContextMenu(e, bookId, bookElement) {
-    const existingContextMenu = document.querySelector('.context-menu');
-    if (existingContextMenu) existingContextMenu.remove();
+function showContextMenu(e, bookId, bookData, bookElement) {
+    const existing = document.querySelector('.context-menu');
+    if (existing) existing.remove();
 
-    const contextMenu = document.createElement('div');
-    contextMenu.classList.add('context-menu');
-    contextMenu.style.top = `${e.pageY}px`;
-    contextMenu.style.left = `${e.pageX}px`;
+    const menu = document.createElement('div');
+    menu.classList.add('context-menu');
+    menu.style.top = `${e.pageY}px`;
+    menu.style.left = `${e.pageX}px`;
 
-    const deleteOption = document.createElement('div');
-    deleteOption.textContent = 'Delete Book';
-    deleteOption.addEventListener('click', () => {
-        deleteBook(bookId, bookElement);
-        contextMenu.remove();
-    });
+    const rename = document.createElement('div');
+    rename.textContent = 'Rename';
+    rename.onclick = async () => {
+        const newName = prompt('Rename book:', bookData.title);
+        if (newName && newName !== bookData.title) {
+            await db.collection('books').doc(bookId).update({ title: newName });
+            loadBooks();
+        }
+        menu.remove();
+    };
 
-    contextMenu.appendChild(deleteOption);
-    document.body.appendChild(contextMenu);
+    const del = document.createElement('div');
+    del.textContent = 'Delete';
+    del.onclick = async () => {
+        if (confirm(`Delete "${bookData.title}"?`)) {
+            await db.collection('books').doc(bookId).delete();
+            bookElement.remove();
+        }
+        menu.remove();
+    };
 
-    document.addEventListener('click', () => {
-        contextMenu.remove();
-    }, { once: true });
+    const changeCover = document.createElement('div');
+    changeCover.textContent = 'Change Cover';
+    changeCover.onclick = () => {
+        coverInput.onchange = async (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    await db.collection('books').doc(bookId).update({ cover: e.target.result });
+                    loadBooks();
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+        coverInput.click();
+        menu.remove();
+    };
+
+    const publish = document.createElement('div');
+    publish.textContent = 'Publish';
+    publish.onclick = async () => {
+        await db.collection('books').doc(bookId).update({ published: true });
+        alert(`"${bookData.title}" published.`);
+        menu.remove();
+    };
+
+    menu.append(rename, del, changeCover, publish);
+    document.body.appendChild(menu);
+
+    document.addEventListener('click', () => menu.remove(), { once: true });
 }
 
-async function deleteBook(bookId, bookElement) {
-    if (!confirm('Are you sure you want to delete this book?')) return;
+async function createBook() {
+    const bookTitle = prompt('Enter the title of the book:');
+    if (!bookTitle) return;
+
+    const user = firebase.auth().currentUser;
+    if (!user) {
+        alert('Not logged in');
+        return;
+    }
+
+    const bookData = {
+        title: bookTitle.length > 60 ? bookTitle.substring(0, 60) : bookTitle,
+        description: '',
+        cover: 'images/presetBook.png',
+        userId: user.uid,
+        email: user.email,
+        timestamp: new Date()
+    };
 
     try {
-        await db.collection('books').doc(bookId).delete();
-        console.log('Book deleted');
-        bookElement.remove();
-    } catch (error) {
-        console.error('Error deleting book:', error);
+        await db.collection('books').add(bookData);
+        alert('Book created');
+        loadBooks();
+    } catch (err) {
+        console.error('Error creating book:', err);
     }
 }
 
 firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        loadBooks();
-    } else {
-        window.location.href = 'login.html';
-    }
+    if (user) loadBooks();
+    else window.location.href = 'login.html';
 });
-
-
-
-
