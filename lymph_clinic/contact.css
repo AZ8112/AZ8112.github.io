@@ -26,7 +26,7 @@ nav {
     z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: center; /* Center items horizontally */
+    justify-content: center; 
     flex-wrap: wrap;
     min-height: 50px;
 }
@@ -80,7 +80,6 @@ nav ul li a {
     display: inline-block;
 }
 
-/* Add hover effect */
 nav ul li a:hover {
     background-color: #216867;
     border-radius: 5px;
@@ -160,7 +159,7 @@ footer {
     gap: 10px; 
 }
 
-.footer-container div a {
+.footer-container a {
     color: white;
     text-decoration: none;
     font-size: 14px;
@@ -168,7 +167,7 @@ footer {
     display: inline-block;
 }
 
-.footer-container div a:hover {
+.footer-container a:hover {
     text-decoration: underline;
 }
 
