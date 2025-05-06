@@ -16,6 +16,10 @@ html, body {
     font-family: 'Roboto Condensed';
 }
 
+
+
+
+
 /* Style the navigation bar */
 nav {
     background-color: #29b09f; 
@@ -34,6 +38,7 @@ nav {
 main {
     flex: 1;
     width: 100%;
+    padding-top: 50px;
 }
 
 .text {
@@ -147,7 +152,8 @@ footer {
     padding: 20px 0;
     text-align: center;
     width: 100%;
-    margin-top: auto;
+    margin-top: 30%;
+    
 }
 
 .footer-container {
