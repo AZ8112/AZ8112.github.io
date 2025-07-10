@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Books</title>
+
+    <!-- CSS files -->
+    <link rel="stylesheet" href="booksCSS.css">
+    <link rel="icon" href="images/mascotlogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+
+    <script>
+      const firebaseConfig = {
+          apiKey: "AIzaSyAEr33Xkv6MLFddOVEXE1C0YfH3X1Bgk-c",
+          authDomain: "secretcatsociety-4b605.firebaseapp.com",
+          projectId: "secretcatsociety-4b605",
+          storageBucket: "secretcatsociety-4b605.appspot.com",
+          messagingSenderId: "264416108947",
+          appId: "1:264416108947:web:4606190d070caecb6e4866"
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+
+<body> 
+
+<!-- Redirect if not logged in -->
+<script>
+    const auth = firebase.auth();
+    auth.onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = "login.html"; // Redirect to login if not authenticated
+      }
+    });
+</script>
+
+<!-- Navbar START -->
+<div class="navbar">
+    <a class="active" href="main.html"><i class="fa-solid fa-house"></i> Home</a>
+
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa-solid fa-bookmark"></i> Books</button>
+        <div class="dropdown-content">
+            <button class="createbtn" onclick="createBook()">Create Book</button>
+            <a href="booksHTML.html">My Books</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa-solid fa-user-group"></i> Characters</button>
+        <div class="dropdown-content">
+            <a href="profiles.html">Profiles</a>
+            <a href="#LINK_NEEDED_HERE">Relationships</a>
+        </div>
+    </div>
+
+    <a class="active" href="library.html">Library</a>
+
+    <!-- User account menu -->
+    <div class="user-menu">
+        <i class="fa-solid fa-user-circle" id="userIcon"></i>
+        <div id="userDropdown" class="user-dropdown">
+            <p id="userEmail">Logged in as</p>
+            <button onclick="logout()">Log out</button>
+        </div>
+    </div>
+</div>
+<!-- Navbar END -->
+
+<!-- Cover Image Upload -->
+<input type="file" id="coverInput" accept="image/*" style="display:none;">
+
+<!-- Book List Section -->
+<div id="bookList"></div>
+
+<!-- Rename Book Modal -->
+<div id="renameModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Rename Book</h2>
+        <input type="text" id="newBookName" placeholder="Enter new book name">
+        <button id="renameBookButton">Rename</button>
+    </div>
+</div>
+
+<!-- JS Scripts -->
+<script src="booksJS.js"></script>
+<script src="account.js"></script> <!-- Needed for user dropdown/login/logout -->
+</body>
+</html>

@@ -1,0 +1,244 @@
+body {
+    background-image: url('images/purplebg.jpg');
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the image fixed while scrolling */
+    background-size: cover;
+    font-family: Arial, sans-serif;
+
+  }
+
+.title {
+    
+    display: flex;
+    flex-direction: column ;
+    background-color: blueviolet;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+
+
+ 
+h1 { text-align: center;}
+
+/* --------------------- top nav START ---------------------------------------- */
+
+/* Navbar container */
+.navbar {
+    width: 100%;
+    height: 60px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Links inside the navbar */
+.navbar a, .dropbtn {
+    font-size: 18px;
+    color: white;
+    text-align: left;
+    padding: 20px 20px;
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-right: 20px; /* Adjust spacing as needed */
+    font-family: Arial, sans-serif;
+    
+}
+
+
+/* Change link color on hover */
+.navbar a:hover, .dropbtn:hover {
+    color: red;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown menu (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 180px;
+    z-index: 1000;
+    top: 100%; /* Ensures dropdown is below the button */
+    left: 0;
+    width: 100%; /* Ensure full width */
+}
+
+/* Links inside the dropdown */
+.dropdown-content a, .dropdown-content button {
+    color: black;
+    padding: 12px;
+    text-decoration: none;
+    display: block;
+    width: 100%; /* Make the button fill the entire block */
+    box-sizing: border-box; /* Ensure padding doesn't exceed width */
+}
+
+/* Change dropdown link color on hover */
+.dropdown-content a:hover, .dropdown-content button:hover {
+    background-color: #e9b4e6;
+    color: rgb(160, 67, 155);
+}
+
+/* Show dropdown when hovering over the dropdown container */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Create Book button inside dropdown */
+.dropdown-content button.createbtn {
+    background-color: #f9f9f9;
+    color: black;
+    padding: 12px;
+    border: none;
+    width: 100%; /* Full width */
+    text-align: left;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.dropdown-content button.createbtn:hover {
+    background-color: #e9b4e6;
+    color: rgb(160, 67, 155);
+}
+
+/* Prevent page content from being hidden under navbar */
+body {
+    padding-top: 100px;
+}
+
+.user-menu {
+    margin-left: auto;
+    margin-right: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+
+#userIcon {
+    font-size: 170%;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; /* just below the icon */
+    right: 100%; /* shift the box entirely to the left of the icon */
+    background-color: rgb(127, 109, 136);
+    border: 1px solid #000000;
+    padding: 10px;
+    z-index: 1000;
+    width: 220px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-right: 10px; /* small gap between icon and box */
+    color: white;
+}
+
+.user-dropdown p {
+    margin: 0 0 10px 0;
+    color: black;
+}
+
+.user-dropdown button {
+    background-color: #350776;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.user-dropdown button:hover {
+    background-color: rgb(186, 45, 83);
+}
+
+/* --------------------- top nav END ---------------------------------------- */
+
+
+
+
+
+.container {
+    max-width: 900px;
+    margin-top: 35px;
+    margin-left: 80px;
+}
+
+.main-heading {
+    text-align: left;
+    margin-top: 130px;
+    margin-left: 120px;
+    font-family: Arial, sans-serif;
+
+}
+
+.main-heading h1 {
+    font-size: 3em;
+    text-align: left;
+    font-family: Arial, sans-serif;
+    color:rgba(226, 209, 214, 0.974)
+}
+
+.main-heading p {
+    font-size: 150%;
+    color:rgba(226, 209, 214, 0.974)
+}
+
+
+.row {
+    display: flex;
+    gap: 50px;
+    margin-left: 30px;
+}
+
+
+.column {
+    background: linear-gradient(to bottom, rgba(255, 153, 1, 0.932), rgba(255, 72, 0, 0.562));
+    padding: 30px;
+    text-align: left;
+    border-radius: 10%;
+    font-family: Arial, sans-serif;
+    color:rgba(226, 209, 214, 0.974)
+}
+
+.column h2 {
+    font-size: 1.8em;
+    font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+    color:rgba(226, 209, 214, 0.974)
+}
+
+.column p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+    color:rgba(226, 209, 214, 0.974)
+}
+
+.column a {
+    background: rgba(0, 0, 0, 0.425);
+    color: rgb(255, 208, 137);
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.fa-regular, fa-books {
+    color:rgba(226, 209, 214, 0.974)
+}

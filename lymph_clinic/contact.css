@@ -16,6 +16,10 @@ html, body {
     font-family: 'Roboto Condensed';
 }
 
+
+
+
+
 /* Style the navigation bar */
 nav {
     background-color: #29b09f; 
@@ -26,7 +30,7 @@ nav {
     z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: center; /* Center items horizontally */
+    justify-content: center; 
     flex-wrap: wrap;
     min-height: 50px;
 }
@@ -34,6 +38,7 @@ nav {
 main {
     flex: 1;
     width: 100%;
+    padding-top: 50px;
 }
 
 .text {
@@ -80,7 +85,6 @@ nav ul li a {
     display: inline-block;
 }
 
-/* Add hover effect */
 nav ul li a:hover {
     background-color: #216867;
     border-radius: 5px;
@@ -148,7 +152,8 @@ footer {
     padding: 20px 0;
     text-align: center;
     width: 100%;
-    margin-top: auto;
+    margin-top: 30%;
+    
 }
 
 .footer-container {
@@ -160,7 +165,7 @@ footer {
     gap: 10px; 
 }
 
-.footer-container div a {
+.footer-container a {
     color: white;
     text-decoration: none;
     font-size: 14px;
@@ -168,7 +173,7 @@ footer {
     display: inline-block;
 }
 
-.footer-container div a:hover {
+.footer-container a:hover {
     text-decoration: underline;
 }
 
