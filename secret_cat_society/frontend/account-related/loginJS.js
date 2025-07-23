@@ -11,11 +11,10 @@ function closeNav() {
 //toggle submenu
 function toggleSubmenu(submenuId)  {
     const submenu = document.getElementById(submenuId);
-    // Toggle visibility of the submenu
+    // can't you see~ maybe
     submenu.style.display = submenu.style.display === "block" ? "none" : "block";
 }
 
-// Assume Firebase is already initialized from HTML
 
 const auth = firebase.auth();
 
@@ -29,7 +28,7 @@ document.querySelector(".loginbtn").addEventListener("click", function (e) {
     .then((userCredential) => {
       console.log("Logged in successfully:", userCredential.user);
       alert("Login successful!");
-      window.location.href = "./../main.html"; // <-- or wherever you want logged-in users to go
+      window.location.href = "./../main.html"; 
     })
     .catch((error) => {
       console.error("Login error:", error.message);
@@ -38,7 +37,8 @@ document.querySelector(".loginbtn").addEventListener("click", function (e) {
     
 });
 
+// tell me why ~
   document.querySelector(".cancelbtn").addEventListener("click", function () {
-    window.location.href = "main.html"; // Or whatever page you want to cancel back to
+    window.location.href = "/secret_cat_society/frontend/main.html"; // ain't nothing but a heartache
   });
 
