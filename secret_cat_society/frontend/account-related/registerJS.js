@@ -46,5 +46,5 @@ document.querySelector(".signup").addEventListener("click", function (e) {
 });
 
 document.querySelector(".cancelbtn").addEventListener("click", function () {
-      window.location.href = "main.html"; // or wherever you want to send them
+      window.location.href = "./../main.html"; // or wherever you want to send them
   });

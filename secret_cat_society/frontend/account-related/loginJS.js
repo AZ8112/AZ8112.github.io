@@ -29,7 +29,7 @@ document.querySelector(".loginbtn").addEventListener("click", function (e) {
     .then((userCredential) => {
       console.log("Logged in successfully:", userCredential.user);
       alert("Login successful!");
-      window.location.href = "main.html"; // <-- or wherever you want logged-in users to go
+      window.location.href = "./../main.html"; // <-- or wherever you want logged-in users to go
     })
     .catch((error) => {
       console.error("Login error:", error.message);
