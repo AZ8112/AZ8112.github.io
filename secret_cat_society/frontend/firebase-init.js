@@ -1,14 +1,14 @@
 // firebase-init.js
 
-// Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAEr33Xkv6MLFddOVEXE1C0YfH3X1Bgk-c",
-  authDomain: "secretcatsociety-4b605.firebaseapp.com",
-  projectId: "secretcatsociety-4b605",
-  storageBucket: "secretcatsociety-4b605.appspot.com",
-  messagingSenderId: "264416108947",
-  appId: "1:264416108947:web:4606190d070caecb6e4866"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+// Check that firebaseConfig is defined (make sure firebase-config.js is loaded before this)
+if (typeof firebaseConfig === 'undefined') {
+    console.error("firebaseConfig is not defined. Did you load firebase-config.js before this?");
+} else {
+    // Initialize Firebase only if it hasn't been already
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+        console.log("Firebase initialized successfully.");
+    } else {
+        console.log("Firebase already initialized.");
+    }
+}

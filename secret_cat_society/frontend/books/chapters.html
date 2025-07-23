@@ -19,7 +19,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 
-    <script src="./../firebase-init.js" defer></script>
 </head>
 
 <body>
@@ -59,7 +58,7 @@
         <i class="fa-solid fa-user-circle" id="userIcon"></i>
         <div id="userDropdown" class="user-dropdown">
             <p id="userEmail">Logged in as</p>
-            <button onclick="logout()">Log out</button>
+            <button id="logoutBtn">Log out</button>
         </div>
     </div>
 </div>
@@ -98,6 +97,8 @@
 </div>
 
 <!-- Scripts -->
+ <script src="./../firebase-config.js" defer></script>
+    <script src="./../firebase-init.js" defer></script>
 <script src="chaptersJS.js" defer></script>
 <script src="./../account-related/account.js" defer></script> <!-- for user dropdown/logout -->
 </body>

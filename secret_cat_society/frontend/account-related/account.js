@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const userIcon = document.getElementById("userIcon");
     const userDropdown = document.getElementById("userDropdown");
     const userEmailDisplay = document.getElementById("userEmail");
-    const userActionButton = userDropdown ? userDropdown.querySelector("button") : null;
+    const logoutBtn = document.getElementById("logoutBtn");
 
-    if (!userIcon || !userDropdown || !userEmailDisplay || !userActionButton) {
+    if (!userIcon || !userDropdown || !userEmailDisplay || !logoutBtn) {
         console.warn("Some user dropdown elements are missing. Skipping dropdown setup.");
         return;
     }
@@ -33,12 +33,12 @@ document.addEventListener('DOMContentLoaded', function () {
     auth.onAuthStateChanged((user) => {
         if (user) {
             userEmailDisplay.textContent = "Logged in as: " + user.email;
-            userActionButton.textContent = "Log out";
-            userActionButton.onclick = logout;
+            logoutBtn.textContent = "Log out";
+            logoutBtn.onclick = logout;
         } else {
             userEmailDisplay.textContent = "Not logged in.";
-            userActionButton.textContent = "Log in";
-            userActionButton.onclick = redirectToLogin;
+            logoutBtn.textContent = "Log in";
+            logoutBtn.onclick = redirectToLogin;
         }
     });
 });
@@ -55,5 +55,5 @@ function logout() {
 }
 
 function redirectToLogin() {
-        window.location.href = "/frontend/account-related/login.html";
+    window.location.href = "/frontend/account-related/login.html";
 }
