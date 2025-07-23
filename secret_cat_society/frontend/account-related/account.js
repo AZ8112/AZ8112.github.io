@@ -47,7 +47,7 @@ function logout() {
     firebase.auth().signOut()
         .then(() => {
             alert("Logged out!");
-            window.location.href = "/main.html";
+            window.location.href = "./main.html";
         })
         .catch((error) => {
             console.error("Logout error:", error.message);
@@ -55,5 +55,5 @@ function logout() {
 }
 
 function redirectToLogin() {
-    window.location.href = "/account-related/login.html";
+    window.location.href = "./account-related/login.html";
 }
