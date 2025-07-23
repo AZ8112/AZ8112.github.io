@@ -47,7 +47,7 @@ function logout() {
     firebase.auth().signOut()
         .then(() => {
             alert("Logged out!");
-            window.location.href = "/frontend/main.html";
+            window.location.href = "/secret_cat_society/frontend/main.html";
         })
         .catch((error) => {
             console.error("Logout error:", error.message);
