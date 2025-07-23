@@ -1,6 +1,6 @@
 body {
     /* background: radial-gradient(to right, #55225f, #b33de2); */
-    background-image: url('images/homepage_local.png');
+    background-image: url('./../images/purplebg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;}
