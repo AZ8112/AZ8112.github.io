@@ -55,5 +55,5 @@ function logout() {
 }
 
 function redirectToLogin() {
-    window.location.href = "/secret_cat_society/frontend/account-related/login.html";
+    window.location.href = "secret_cat_society/frontend/account-related/login.html";
 }
