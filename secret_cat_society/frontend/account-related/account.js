@@ -55,5 +55,5 @@ function logout() {
 }
 
 function redirectToLogin() {
-    window.location.href = "/frontend/account-related/account.js";
+    window.location.href = "/frontend/account-related/login.html";
 }
