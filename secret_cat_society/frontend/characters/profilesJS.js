@@ -1,20 +1,20 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const db = firebase.firestore();
-
     const defaultImageSrc = 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png';
     let editMode = false;
     let currentEditId = null;
 
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             loadProfiles();
-            patchProfilesWithUserId(); 
+            if (typeof patchProfilesWithUserId === 'function') {
+                patchProfilesWithUserId();
+            }
         } else {
-            window.location.href = 'login.html';
+            window.location.href = '../account-related/login.html';
         }
     });
-    
-    
+
     document.getElementById("profileTitle").addEventListener("input", function () {
         const maxLength = 40;
         if (this.value.length > maxLength) {
@@ -22,15 +22,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    document.getElementById('imagePreview').addEventListener('click', function() {
+    document.getElementById('imagePreview').addEventListener('click', function () {
         document.getElementById('imageUpload').click();
     });
 
-    document.getElementById('imageUpload').addEventListener('change', function(event) {
+    document.getElementById('imageUpload').addEventListener('change', function (event) {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 document.getElementById('imagePreview').src = e.target.result;
                 document.getElementById('imagePreview').alt = '';
             };
@@ -41,21 +41,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    document.getElementById('age').addEventListener('input', function() {
+    document.getElementById('age').addEventListener('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
     });
 
-    document.getElementById('showProfileFormBtn').addEventListener('click', function() {
+    document.getElementById('showProfileFormBtn').addEventListener('click', function () {
         resetForm();
         document.getElementById('profileFormContainer').style.display = 'flex';
     });
 
-    document.getElementById('closeProfileFormBtn').addEventListener('click', function() {
+    document.getElementById('closeProfileFormBtn').addEventListener('click', function () {
         document.getElementById('profileFormContainer').style.display = 'none';
         resetForm();
     });
 
-    document.getElementById('createProfileBtn').addEventListener('click', function() {
+    document.getElementById('createProfileBtn').addEventListener('click', function () {
         if (editMode) {
             updateProfile();
         } else {
@@ -70,18 +70,17 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const docRef = await db.collection('profiles').add({
                 ...profileData,
-                userId: firebase.auth().currentUser.uid, //saves it to the user
+                userId: firebase.auth().currentUser.uid,
                 email: firebase.auth().currentUser.email,
                 timestamp: new Date()
             });
-            console.log('Profile saved to Firestore!');
             alert('Profile saved!');
             resetForm();
             document.getElementById('profileFormContainer').style.display = 'none';
             profileData.userId = firebase.auth().currentUser.uid;
             profileData.email = firebase.auth().currentUser.email;
             addProfileCard(profileData, docRef.id);
-                    } catch (error) {
+        } catch (error) {
             console.error('Error saving profile:', error);
         }
     }
@@ -108,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
     async function deleteProfile(id) {
         try {
             await db.collection('profiles').doc(id).delete();
-            console.log('Profile deleted!');
             document.getElementById(`profile-${id}`).remove();
         } catch (error) {
             console.error('Error deleting profile:', error);
@@ -120,11 +118,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const profileCard = document.createElement('div');
         profileCard.classList.add('profile-card');
         profileCard.setAttribute('id', `profile-${id}`);
-        
+
         let imageHtml = (profile.imageSrc === '' || profile.imageSrc === defaultImageSrc)
             ? `<div class="placeholder">No Image</div>`
             : `<img src="${profile.imageSrc}" alt="${profile.firstName}">`;
-        
+
         profileCard.innerHTML = `
             ${imageHtml}
             <div class="profile-name">
@@ -151,7 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('imagePreview').src = defaultImageSrc;
         document.getElementById('imagePreview').alt = 'Upload Image';
         document.getElementById('createProfileBtn').innerText = 'Create Profile';
-        document.querySelector('.modal-content h2').textContent = 'Create Character Profile';
+        const modalHeader = document.getElementById('modalHeader');
+        if (modalHeader) modalHeader.textContent = 'Create Character Profile';
         editMode = false;
         currentEditId = null;
     }
@@ -173,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return { firstName, middleName, lastName, age, genderPronouns, description, imageSrc };
     }
 
-    window.editProfile = async function(id) {
+    window.editProfile = async function (id) {
         try {
             const doc = await db.collection('profiles').doc(id).get();
             if (doc.exists) {
@@ -187,7 +186,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('imagePreview').src = profile.imageSrc || defaultImageSrc;
                 document.getElementById('profileFormContainer').style.display = 'flex';
                 document.getElementById('createProfileBtn').innerText = 'Update Profile';
-                document.querySelector('.modal-content h2').textContent = 'Update Character Profile';
+                const modalHeader = document.getElementById('modalHeader');
+                if (modalHeader) modalHeader.textContent = 'Update Character Profile';
                 editMode = true;
                 currentEditId = id;
             } else {
@@ -208,7 +208,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 timestamp: new Date()
             });
 
-            console.log('Profile updated!');
             alert('Profile updated!');
             updateProfileCard(currentEditId, profileData);
             document.getElementById('profileFormContainer').style.display = 'none';
@@ -221,11 +220,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateProfileCard(id, profile) {
         const card = document.getElementById(`profile-${id}`);
         if (!card) return;
-    
+
         if (card.querySelector('img')) {
             card.querySelector('img').src = profile.imageSrc || defaultImageSrc;
         }
-    
+
         card.querySelector('.profile-name').innerHTML = `
             ${profile.firstName ? profile.firstName : ''}<br>
             ${profile.age ? profile.age : ''}<br>
@@ -245,6 +244,8 @@ function toggleSubmenu(submenuId) {
     var submenu = document.getElementById(submenuId);
     submenu.style.display = submenu.style.display === "block" ? "none" : "block";
 }
-document.querySelector('.openbtn').addEventListener('click', openNav);
-document.querySelector('.closebtn').addEventListener('click', closeNav);
 
+const openBtn = document.querySelector('.openbtn');
+const closeBtn = document.querySelector('.closebtn');
+if (openBtn) openBtn.addEventListener('click', openNav);
+if (closeBtn) closeBtn.addEventListener('click', closeNav);

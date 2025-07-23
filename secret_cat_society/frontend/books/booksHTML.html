@@ -16,17 +16,8 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 
 
-    <script>
-      const firebaseConfig = {
-          apiKey: "AIzaSyAEr33Xkv6MLFddOVEXE1C0YfH3X1Bgk-c",
-          authDomain: "secretcatsociety-4b605.firebaseapp.com",
-          projectId: "secretcatsociety-4b605",
-          storageBucket: "secretcatsociety-4b605.appspot.com",
-          messagingSenderId: "264416108947",
-          appId: "1:264416108947:web:4606190d070caecb6e4866"
-      };
-      firebase.initializeApp(firebaseConfig);
-    </script>
+    <script src="./../firebase-init.js" defer></script>
+
 </head>
 
 <body> 
@@ -36,7 +27,7 @@
     const auth = firebase.auth();
     auth.onAuthStateChanged(user => {
       if (!user) {
-        window.location.href = "account-related/login.html"; // Redirect to login if not authenticated
+        window.location.href = "../account-related/login.html"; 
       }
     });
 </script>
@@ -91,7 +82,7 @@
 </div>
 
 <!-- JS Scripts -->
-<script src="booksJS.js"></script>
-<script src="./../account-related/account.js"></script> <!-- Needed for user dropdown/login/logout -->
+<script src="booksJS.js" defer></script>
+<script src="./../account-related/account.js" defer></script> <!-- Needed for user dropdown/login/logout -->
 </body>
 </html>

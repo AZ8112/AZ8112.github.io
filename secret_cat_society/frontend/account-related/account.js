@@ -1,12 +1,19 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    // Wait until Firebase is actually available
+    if (typeof firebase === "undefined" || !firebase.apps.length) {
+        console.error("Firebase is not initialized. Make sure firebase-init.js loads before this script.");
+        return;
+    }
+
     const auth = firebase.auth();
+
     const userIcon = document.getElementById("userIcon");
     const userDropdown = document.getElementById("userDropdown");
     const userEmailDisplay = document.getElementById("userEmail");
-    const userActionButton = userDropdown.querySelector("button");
+    const userActionButton = userDropdown ? userDropdown.querySelector("button") : null;
 
     if (!userIcon || !userDropdown || !userEmailDisplay || !userActionButton) {
-        console.warn("Some user dropdown elements are missing.");
+        console.warn("Some user dropdown elements are missing. Skipping dropdown setup.");
         return;
     }
 
@@ -40,7 +47,7 @@ function logout() {
     firebase.auth().signOut()
         .then(() => {
             alert("Logged out!");
-            window.location.href = "login.html";
+            window.location.href = "/frontend/account-related/login.html";
         })
         .catch((error) => {
             console.error("Logout error:", error.message);
@@ -48,5 +55,5 @@ function logout() {
 }
 
 function redirectToLogin() {
-    window.location.href = "login.html";
+        window.location.href = "/frontend/account-related/login.html";
 }

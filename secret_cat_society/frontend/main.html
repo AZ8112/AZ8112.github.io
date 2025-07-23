@@ -13,17 +13,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyAEr33Xkv6MLFddOVEXE1C0YfH3X1Bgk-c",
-      authDomain: "secretcatsociety-4b605.firebaseapp.com",
-      projectId: "secretcatsociety-4b605",
-      storageBucket: "secretcatsociety-4b605.appspot.com", <!-- CORRECTED -->
-      messagingSenderId: "264416108947",
-      appId: "1:264416108947:web:4606190d070caecb6e4866"
-    };
-    firebase.initializeApp(firebaseConfig);
-  </script>
+  <script src="firebase-init.js" defer></script>
 </head>
 
 <body>
@@ -43,7 +33,7 @@
         <button class="dropbtn"><i class="fa-solid fa-user-group"></i> Characters</button>
         <div class="dropdown-content">
             <a href="././characters/profiles.html">Profiles</a>
-            // This link is a placeholder, replace with actual link
+           <!-- This link is a placeholder, replace with actual link -->
             <a href="#LINK_NEEDED_HERE">Relationships</a>
         </div>
     </div>
@@ -94,8 +84,8 @@
 </div>
 
 <!-- Scripts -->
-<script src="JavaScriptMain.js"></script>
-<script src="././account-related/account.js"></script>
+<script src="JavaScriptMain.js" defer></script>
+<script src="account-related/account.js" defer></script>
 
 </body>
 </html>

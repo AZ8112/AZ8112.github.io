@@ -161,5 +161,5 @@ async function createBook() {
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) loadBooks();
-    else window.location.href = 'login.html';
+    else window.location.href = '../account-related/login.html';
 });
