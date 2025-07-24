@@ -4,11 +4,21 @@ document.addEventListener('DOMContentLoaded', function () {
     let editMode = false;
     let currentEditId = null;
 
+    // 🛠 DEV BYPASS: Enable/disable DevMode here
+    const DEV_MODE = true;
+    const devUser = { uid: "devUser123", email: "dev@example.com" };
+
     firebase.auth().onAuthStateChanged(function (user) {
+        // 🛠 DEV BYPASS: Use fake user if not logged in and DEV_MODE is true
+        if (!user && DEV_MODE) {
+            console.warn("🔥 Dev mode active – using mock user.");
+            user = devUser;
+        }
+
         if (user) {
-            loadProfiles();
+            loadProfiles(user);
             if (typeof patchProfilesWithUserId === 'function') {
-                patchProfilesWithUserId();
+                patchProfilesWithUserId(user);
             }
         } else {
             window.location.href = '../account-related/login.html';
@@ -67,30 +77,32 @@ document.addEventListener('DOMContentLoaded', function () {
         const profileData = collectProfileData();
         if (!profileData) return;
 
+        const user = firebase.auth().currentUser || devUser; // 🛠 DEV BYPASS
+
         try {
             const docRef = await db.collection('profiles').add({
                 ...profileData,
-                userId: firebase.auth().currentUser.uid,
-                email: firebase.auth().currentUser.email,
+                userId: user.uid,
+                email: user.email,
                 timestamp: new Date()
             });
             alert('Profile saved!');
             resetForm();
             document.getElementById('profileFormContainer').style.display = 'none';
-            profileData.userId = firebase.auth().currentUser.uid;
-            profileData.email = firebase.auth().currentUser.email;
+            profileData.userId = user.uid;
+            profileData.email = user.email;
             addProfileCard(profileData, docRef.id);
         } catch (error) {
             console.error('Error saving profile:', error);
         }
     }
 
-    async function loadProfiles() {
+    async function loadProfiles(user) {
         const profileContainer = document.getElementById('profileContainer');
         profileContainer.innerHTML = '';
 
         try {
-            const userId = firebase.auth().currentUser.uid;
+            const userId = user.uid; // 🛠 DEV BYPASS safe
             const snapshot = await db.collection('profiles')
                 .where('userId', '==', userId)
                 .orderBy('timestamp', 'desc')

@@ -2,8 +2,18 @@ const db = firebase.firestore();
 const bookList = document.getElementById("bookList");
 const coverInput = document.getElementById("coverInput");
 
+// 🛠 DEV BYPASS: Toggle this flag to true during local development to skip login
+const DEV_MODE = true;
+
 async function loadBooks() {
-  const user = firebase.auth().currentUser;
+  let user = firebase.auth().currentUser;
+
+  // 🛠 DEV BYPASS: Mock user if not authenticated and DEV_MODE is true
+  if (!user && DEV_MODE) {
+    console.warn("🔥 Dev mode active - using mock user.");
+    user = { uid: "devUser123", email: "dev@example.com" };
+  }
+
   if (!user) return;
 
   bookList.innerHTML = "";
@@ -136,9 +146,16 @@ async function createBook() {
   const bookTitle = prompt("Enter the title of the book:");
   if (!bookTitle) return;
 
-  const user = firebase.auth().currentUser;
+  let user = firebase.auth().currentUser;
+
+  // 🛠 DEV BYPASS: Mock user if needed
+  if (!user && DEV_MODE) {
+    console.warn("🔥 Dev mode active - using mock user.");
+    user = { uid: "devUser123", email: "dev@example.com" };
+  }
+
   if (!user) {
-    alert("Not logged in");
+    alert("Not logged in.");
     return;
   }
 
@@ -161,6 +178,14 @@ async function createBook() {
 }
 
 firebase.auth().onAuthStateChanged((user) => {
-  if (user) loadBooks();
-  else window.location.href = "../account-related/login.html";
+  // 🛠 DEV BYPASS: Skip redirect and load with mock user
+  if (user || DEV_MODE) {
+    if (!user && DEV_MODE) {
+      console.warn("🔥 Dev mode active – no auth, using mock user.");
+    }
+    loadBooks();
+  } else {
+    // Normal redirect if not in dev mode
+    window.location.href = "../account-related/login.html";
+  }
 });
