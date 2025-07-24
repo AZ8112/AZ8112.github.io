@@ -1,0 +1,53 @@
+{
+    "folder-color.pathColors": [
+        {
+            "folderPath": "secret_cat_society\\frontend\\account-related\\",
+            "color": "foldercolorizer.color_ffcc33"
+        },
+        {
+            "folderPath": "secret_cat_society\\frontend\\books\\",
+            "color": "foldercolorizer.color_9966ff"
+        },
+        {
+            "folderPath": "secret_cat_society\\frontend\\characters\\",
+            "color": "foldercolorizer.color_ff6699"
+        },
+        {
+            "folderPath": "secret_cat_society\\frontend\\images\\",
+            "color": "foldercolorizer.color_00cccc"
+        },
+        {
+            "folderPath": "secret_cat_society\\frontend\\library\\",
+            "color": "foldercolorizer.color_33cc66"
+        },
+        {
+            "folderPath": "secret_cat_society\\frontend\\",
+            "color": "foldercolorizer.color_cc0000"
+        },
+        {
+            "folderPath": "secret_cat_society\\backups\\",
+            "color": "foldercolorizer.color_33cc99"
+        },
+        {
+            "folderPath": "secret_cat_society\\backend\\",
+            "color": "foldercolorizer.color_ff0099"
+        },
+        {
+            "folderPath": "secret_cat_society\\frontend\\firebase-init.js\\",
+            "color": "foldercolorizer.color_33ff99"
+        },
+        {
+            "folderPath": "secret_cat_society\\frontend\\firebase-config.js\\",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "secret_cat_society\\frontend\\CSSmain.css\\",
+            "color": "foldercolorizer.color_cc99ff"
+        },
+        {
+            "folderPath": "secret_cat_society\\frontend\\JavaScriptMain.js\\",
+            "color": "foldercolorizer.color_cccc00"
+        }
+    ],
+    "liveServer.settings.port": 5501
+}

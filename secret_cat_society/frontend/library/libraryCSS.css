@@ -1,5 +1,5 @@
 body {
-    background-image: url('images/purplebg.jpg');
+    background-image: url('./../images/purplebg.jpg');
     background-repeat: no-repeat; /* Prevents the image from repeating */
     background-attachment: fixed; /* Keeps the image fixed while scrolling */
     background-size: cover;
@@ -98,6 +98,61 @@ body {
 .dropdown-content button.createbtn:hover {
     background-color: #e9b4e6;
     color: rgb(160, 67, 155);
+}
+
+/* Prevent page content from being hidden under navbar */
+body {
+    padding-top: 100px;
+}
+
+.user-menu {
+    margin-left: auto;
+    margin-right: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+
+#userIcon {
+    font-size: 170%;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; 
+    right: 100%; 
+    background-color: rgb(127, 109, 136);
+    border: 1px solid #000000;
+    padding: 10px;
+    z-index: 1000;
+    width: 220px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-right: 10px; 
+    color: white;
+}
+
+.user-dropdown p {
+    margin: 0 0 10px 0;
+    color: black;
+}
+
+.user-dropdown button {
+    background-color: #350776;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.user-dropdown button:hover {
+    background-color: rgb(186, 45, 83);
 }
 
 

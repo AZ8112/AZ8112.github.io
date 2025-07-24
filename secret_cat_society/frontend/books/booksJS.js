@@ -145,7 +145,7 @@ async function createBook() {
   const bookData = {
     title: bookTitle.length > 60 ? bookTitle.substring(0, 60) : bookTitle,
     description: "",
-    cover: "images/presetBook.png",
+    cover: "./../images/presetBook.png",
     userId: user.uid,
     email: user.email,
     timestamp: new Date(),

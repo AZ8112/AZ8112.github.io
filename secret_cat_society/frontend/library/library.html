@@ -27,14 +27,14 @@
 </head>
 <body>
 <!-- Redirect check -->
-    <script>
+    <!-- <script>
         const auth = firebase.auth();
         auth.onAuthStateChanged(user => {
         if (!user) {
             window.location.href = "./../account-related/login.html"; // Redirect to login if not authenticated
             }
         });
-    </script>
+    </script> -->
 
     <!-- Navbar START -->
     <div class="navbar">
@@ -59,14 +59,13 @@
 
         <input type="text" id="search" class="navbar-search" placeholder="Search books...">
 
-        <!-- add back in once finished -->
-        <!-- <div class="user-menu">
-            <i class="fa-solid fa-user-circle" id="userIcon"></i>
-            <div id="userDropdown" class="user-dropdown">
-              <p id="userEmail">Logged in as</p>
-              <button onclick="logout()">Log out</button>
-            </div>
-          </div> -->
+        <div class="user-menu">
+        <i class="fa-solid fa-user-circle" id="userIcon"></i>
+        <div id="userDropdown" class="user-dropdown">
+          <p id="userEmail">Logged in as</p>
+          <button id="logoutBtn">Log out</button>
+        </div>
+    </div>
     </div>
     <!-- Navbar END -->
 
@@ -84,6 +83,10 @@
         <div class="book-grid" id="libraryBookGrid"></div>
     </section>
 
-    <script src="./../library/libraryJS.js"></script>
+    <script src="firebase-config.js" defer></script>
+    <script src="firebase-init.js" defer></script>
+    <script src="libraryJS.js" defer></script>
+    <script src="./../account-related/account.js" defer></script>
+
 </body>
 </html>

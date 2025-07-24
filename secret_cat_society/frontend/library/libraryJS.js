@@ -1,17 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
-// Like/Dislike buttons
-document.addEventListener('click', function (e) {
-    const likeBtn = e.target.closest('.like-btn');
-    const dislikeBtn = e.target.closest('.dislike-btn');
+    // Like/Dislike buttons
+    document.addEventListener('click', function (e) {
+        const likeBtn = e.target.closest('.like-btn');
+        const dislikeBtn = e.target.closest('.dislike-btn');
 
-    if (likeBtn) {
-        const count = likeBtn.querySelector('.count');
-        count.textContent = parseInt(count.textContent) + 1;
-        likeBtn.disabled = true;
-    }
-
-});
-
+        if (likeBtn) {
+            const count = likeBtn.querySelector('.count');
+            count.textContent = parseInt(count.textContent) + 1;
+            likeBtn.disabled = true;
+        }
+    });
 
     // Search filter
     const searchInput = document.getElementById('search');
@@ -40,22 +38,22 @@ document.addEventListener('click', function (e) {
     function refreshLibraryBooks() {
         const libraryGrid = document.getElementById('libraryBookGrid');
         libraryGrid.innerHTML = ''; // Clear existing cards
-    
+
         const books = JSON.parse(localStorage.getItem('publishedBooks')) || [];
-    
+
         books.forEach(book => {
             const card = document.createElement('div');
             card.className = 'book-card';
-    
+
             const cover = document.createElement('div');
             cover.className = 'book-cover';
-    
+
             const img = document.createElement('img');
             img.src = book.cover;
             img.alt = book.title;
             img.loading = "lazy";
             cover.appendChild(img);
-    
+
             const info = document.createElement('div');
             info.className = 'book-info';
             info.innerHTML = `
@@ -66,18 +64,20 @@ document.addEventListener('click', function (e) {
                     <button class="like-btn"><i class="fas fa-thumbs-up"></i> <span class="count">0</span></button>
                 </div>
             `;
-    
+
             card.appendChild(cover);
             card.appendChild(info);
             libraryGrid.appendChild(card);
         });
     }
-    
 
+    // New function to toggle submenu visibility
+    function toggleSubmenu(submenuId) {
+        const submenu = document.getElementById(submenuId);
+        submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+    }
 
     document.body.classList.add('loaded');
 
-
     loadLibraryBooks();
 });
-
