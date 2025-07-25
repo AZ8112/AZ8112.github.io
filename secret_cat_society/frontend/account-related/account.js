@@ -35,6 +35,12 @@ document.addEventListener('DOMContentLoaded', function () {
             userEmailDisplay.textContent = "Logged in as: " + user.email;
             logoutBtn.textContent = "Log out";
             logoutBtn.onclick = logout;
+
+            // Redirect to account page when icon is double-clicked
+            userIcon.addEventListener("dblclick", () => {
+                window.location.href = "/secret_cat_society/frontend/account-related/accountPage.html";
+            });
+
         } else {
             userEmailDisplay.textContent = "Not logged in.";
             logoutBtn.textContent = "Log in";

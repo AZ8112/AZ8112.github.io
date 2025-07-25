@@ -1,0 +1,315 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url('./../images/purplebg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  padding-top: 100px; /* To prevent content under navbar */
+}
+
+/* --------------------- top nav START ---------------------------------------- */
+
+.navbar {
+  width: 100%;
+  height: 60px;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.navbar a, .dropbtn {
+  font-size: 18px;
+  color: white;
+  text-align: left;
+  padding: 20px;
+  text-decoration: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.navbar a:hover, .dropbtn:hover {
+  color: red;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 180px;
+  z-index: 1000;
+  top: 100%;
+  left: 0;
+  width: 100%;
+}
+
+.dropdown-content a,
+.dropdown-content button {
+  color: black;
+  padding: 12px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dropdown-content a:hover,
+.dropdown-content button:hover {
+  background-color: #e9b4e6;
+  color: rgb(160, 67, 155);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content button.createbtn {
+  background-color: #f9f9f9;
+  color: black;
+  padding: 12px;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.dropdown-content button.createbtn:hover {
+  background-color: #e9b4e6;
+  color: rgb(160, 67, 155);
+}
+
+.user-menu {
+  margin-left: auto;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+#userIcon {
+  font-size: 170%;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 100%;
+  background-color: rgb(127, 109, 136);
+  border: 1px solid #000;
+  padding: 10px;
+  z-index: 1000;
+  width: 220px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-right: 10px;
+  color: white;
+}
+
+.user-dropdown p {
+  margin: 0 0 10px 0;
+  color: black;
+}
+
+.user-dropdown button {
+  background-color: #350776;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.user-dropdown button:hover {
+  background-color: rgb(186, 45, 83);
+}
+
+/* --------------------- top nav END ---------------------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Full-width input fields for ALL types */
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=date],
+input[type=url],
+select,
+textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #af95d0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  border-radius: 2px;
+}
+
+/* Focus effect for all inputs */
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=date]:focus,
+input[type=url]:focus,
+select:focus,
+textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Style the textarea */
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* Style for generic buttons */
+.something {
+  background-color: #21aba2;
+  font-size: large;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+/* Save button */
+.savebtn {
+  padding: 14px 20px;
+  background-color: #329635;
+  color: #fefefe;
+  border-color: black;
+  border-radius: 2px;
+}
+
+/* Cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #ae5041;
+  color: #fefefe;
+  border-color: black;
+  border-radius: 2px;
+}
+
+/* Form container */
+.container {
+  padding: 16px;
+  background-color: #775c85;
+  color: #f1f1f1;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #6e4c7fa2;
+  padding-top: 50px;
+}
+
+/* Modal box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  border: 1px solid #888;
+  width: 70%;
+  max-width: 500px;
+  min-width: 300px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Account form */
+.account-form {
+  background-color: #fefefe5d;
+  margin: auto;
+  width: 70%;
+  max-width: 600px;
+  min-width: 300px;
+  padding: 16px;
+  border: 1px solid #888;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  height: 95%;
+  overflow: auto;
+}
+
+/* HR line */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Button group layout */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.button-group button {
+  width: 48%;
+}
+
+/* Responsive: stack buttons on small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .savebtn {
+    width: 100%;
+  }
+}
