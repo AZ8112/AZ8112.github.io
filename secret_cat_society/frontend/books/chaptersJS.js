@@ -236,3 +236,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     renderChapters();
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const userIcon = document.getElementById("userIcon");
+  if (userIcon) {
+    // Redirect to account page on click
+    userIcon.addEventListener("click", function () {
+        console.log("User icon clicked, redirecting to account page.");
+      window.location.href = "./../account-related/accountPage.html";
+    });
+  }
+});

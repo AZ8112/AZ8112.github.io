@@ -3,7 +3,7 @@ const bookList = document.getElementById("bookList");
 const coverInput = document.getElementById("coverInput");
 
 // 🛠 DEV BYPASS: Toggle this flag to true during local development to skip login
-const DEV_MODE = false;
+const DEV_MODE = true;
 
 async function loadBooks() {
   let user = firebase.auth().currentUser;
@@ -187,5 +187,17 @@ firebase.auth().onAuthStateChanged((user) => {
   } else {
     // Normal redirect if not in dev mode
     window.location.href = "../account-related/login.html";
+  }
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const userIcon = document.getElementById("userIcon");
+  if (userIcon) {
+    // Redirect to account page on click
+    userIcon.addEventListener("click", function () {
+        console.log("User icon clicked, redirecting to account page.");
+      window.location.href = "./../account-related/accountPage.html";
+    });
   }
 });

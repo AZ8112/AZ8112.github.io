@@ -39,6 +39,6 @@ document.querySelector(".loginbtn").addEventListener("click", function (e) {
 
 // tell me why ~
   document.querySelector(".cancelbtn").addEventListener("click", function () {
-    window.location.href = "/secret_cat_society/frontend/main.html"; // ain't nothing but a heartache
+    window.location.href = "./../main.html"; // ain't nothing but a heartache
   });
 
