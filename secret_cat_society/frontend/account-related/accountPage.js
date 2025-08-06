@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const DEV_MODE = true;
+  const DEV_MODE = false;
 
   const cancelBtn = document.querySelector(".cancelbtn");
   if (cancelBtn) {
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         data.userId = uid;
-        
+
         // Optional fields - include ONLY if not empty
         if (bio) data.bio = bio;
         if (birthday) data.birthday = birthday;

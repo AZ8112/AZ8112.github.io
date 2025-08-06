@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentEditId = null;
 
     // 🛠 DEV BYPASS: Enable/disable DevMode here
-    const DEV_MODE = true;
+    const DEV_MODE = false;
     const devUser = { uid: "devUser123", email: "dev@example.com" };
 
     firebase.auth().onAuthStateChanged(function (user) {
