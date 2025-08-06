@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // 🛠 DEV BYPASS: Enable/disable DevMode here
   const DEV_MODE = false;
 
   const cancelBtn = document.querySelector(".cancelbtn");
@@ -29,10 +30,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.querySelector(".account-form");
     if (form) {
+      const uid = user.uid;
+
+      // 🧠 Load existing data into form
+      try {
+        const doc = await firebase.firestore().collection("users").doc(uid).get();
+        if (doc.exists) {
+          const data = doc.data();
+          document.querySelector('[name="username"]').value = data.username || "";
+          document.querySelector('[name="birthday"]').value = data.birthday || "";
+          document.querySelector('[name="pronouns"]').value = data.pronouns || "";
+          document.querySelector('[name="bio"]').value = data.bio || "";
+          document.querySelector('[name="profilePic"]').value = data.profilePic || "";
+        } else {
+          console.warn("No user data found in Firestore.");
+        }
+      } catch (err) {
+        console.error("Error loading user data:", err);
+      }
+
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const uid = user.uid;
         const username = document
           .querySelector('[name="username"]')
           ?.value.trim();
@@ -62,9 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
           email: user.email,
           username,
           updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+          userId: uid
         };
-
-        data.userId = uid;
 
         // Optional fields - include ONLY if not empty
         if (bio) data.bio = bio;
@@ -81,9 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
           alert("Account data saved!");
         } catch (err) {
           console.error("Error saving account data:", err);
-          alert(
-            "Well, that broke..."
-          );
+          alert("Well, that broke...");
         }
       });
 

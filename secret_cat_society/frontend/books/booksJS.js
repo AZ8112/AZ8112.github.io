@@ -2,7 +2,7 @@ const db = firebase.firestore();
 const bookList = document.getElementById("bookList");
 const coverInput = document.getElementById("coverInput");
 
-// 🛠 DEV BYPASS: Toggle this flag to true during local development to skip login
+// 🛠 DEV BYPASS: Enable/disable DevMode here
 const DEV_MODE = false;
 
 async function loadBooks() {
