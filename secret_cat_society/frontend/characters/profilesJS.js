@@ -5,13 +5,13 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentEditId = null;
 
     // 🛠 DEV BYPASS: Enable/disable DevMode here
-    const DEV_MODE = false;
+    const DEV_MODE = true;
     const devUser = { uid: "devUser123", email: "dev@example.com" };
 
     firebase.auth().onAuthStateChanged(function (user) {
         // 🛠 DEV BYPASS: Use fake user if not logged in and DEV_MODE is true
         if (!user && DEV_MODE) {
-            console.warn("🔥 Dev mode active – using mock user.");
+            console.warn("Dev mode active – using mock user.");
             user = devUser;
         }
 

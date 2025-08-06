@@ -3,7 +3,7 @@ const bookList = document.getElementById("bookList");
 const coverInput = document.getElementById("coverInput");
 
 // 🛠 DEV BYPASS: Toggle this flag to true during local development to skip login
-const DEV_MODE = false;
+const DEV_MODE = true;
 
 async function loadBooks() {
   let user = firebase.auth().currentUser;
