@@ -208,6 +208,130 @@ body {
 
 /* Book preview END -----------------------------------------------------------------------------*/
 
+
+/* Book tags START -----------------------------------------------------------------------------*/
+
+.book-tags {
+    position: relative; /* Absolute positioning */
+    width: 800px; /* Adjust width to make it smaller */
+    padding: 20px;
+    background-color: rgba(87, 84, 84, 0.527);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto; /* Top/bottom margin 20px, auto centers horizontally */
+    display: block; /* Ensures margin auto works */
+}
+
+.tag-description {
+    position: relative;
+    width: 100%;
+    padding: 5px;
+    border: 2px solid #5f4764;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: none; 
+    overflow: hidden; 
+    display: flex;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+    display: block;
+    font-size: large;
+
+}
+
+#tagInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dcb6e4;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: none; /* Prevent manual resizing */
+    overflow: hidden; /* Hide overflow */
+    display: flex;
+    font-family: Arial, sans-serif;
+}
+
+#charCounter {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+#addTagBtn {
+    padding: 10px 10px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tag-discretion{
+    color: white;
+}
+
+.tag-discretion-special{
+    color: #e20069ce;
+}
+
+.grouped-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px; 
+    margin-top: -10px;
+    }
+
+.suggestion-item {
+  background-color: white;
+  padding: 5px 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #e9b4e6;
+  color: #5a1a58;
+}
+
+.added-tags {
+  background-color: #1e1e1ec0;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px; 
+  
+}
+
+
+.tag-button {
+  padding: 5px 12px;
+  background-color: #e20069ce;
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 2px;
+  cursor: default;
+  font-family: Helvetica, sans-serif;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: background-color 0.2s ease;
+  margin-right: 5px;
+  
+}
+
+.tag-button:hover {
+  background-color: #b80058;
+}
+
+/* Book tags END -----------------------------------------------------------------------------*/
+
+
+
+
+
 .chapter-list {
     margin-top: 20px;
     display: flex;

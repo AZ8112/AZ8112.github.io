@@ -24,6 +24,7 @@ async function cleanUpBooksAndChapters() {
         const bookData = bookSnapshot.data();
         let updateObj = {};
 
+        // --- Ensure isPublic field ---
         if ('published' in bookData) {
             updateObj.isPublic = bookData.published;
             updateObj.published = admin.firestore.FieldValue.delete();
@@ -35,11 +36,24 @@ async function cleanUpBooksAndChapters() {
             console.log(`✅ Book ${bookId} already has isPublic`);
         }
 
+        // --- Add empty tags array if missing ---
+        if (!('tags' in bookData)) {
+            updateObj.tags = []; // Start with an empty array
+            console.log(`➕ Added missing tags[] array to book ${bookId}`);
+        } else if (!Array.isArray(bookData.tags)) {
+            console.warn(`⚠️ Book ${bookId} has a non-array tags field, skipping tag fix.`);
+        } else if (bookData.tags.length > 20) {
+            // Trim the tags if somehow there are too many
+            updateObj.tags = bookData.tags.slice(0, 20);
+            console.log(`✂️ Trimmed tags array to 20 items for book ${bookId}`);
+        }
+
         if (Object.keys(updateObj).length > 0) {
             await bookDocRef.update(updateObj);
         }
 
-        // --- Clean Up Chapter Docs ---
+        // --- Clean Up Chapter Docs (optional cleanup, comment out if not needed) ---
+        /*
         const chaptersCol = bookDocRef.collection('chapters');
         const chapterDocs = await chaptersCol.get();
 
@@ -53,9 +67,10 @@ async function cleanUpBooksAndChapters() {
                 console.warn(`⚠️ Could not update chapter ${chapterDoc.id}: ${err.message}`);
             }
         }
+        */
     }
 
-    console.log('✅ Done: Normalized book visibility and scrubbed chapters.');
+    console.log('✅ Done: Normalized book visibility and ensured tags field.');
 }
 
 cleanUpBooksAndChapters().catch(console.error);

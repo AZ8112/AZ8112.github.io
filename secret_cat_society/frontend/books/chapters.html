@@ -23,15 +23,6 @@
 
 <body>
 
-<!-- Redirect if not logged in -->
-<script>
-    const auth = firebase.auth();
-    auth.onAuthStateChanged(user => {
-        if (!user) {
-            window.location.href = "account-related/login.html";
-        }
-    });
-</script>
 
 <!-- Navbar START -->
 <div class="navbar">
@@ -75,6 +66,29 @@
     <button id="saveDescription">Save Description</button>
 </div>
 <!-- Book preview END -->
+
+<!-- Book tags START-->
+<div class="book-tags">
+    <h2 class="descriptionHeader">Book tags</h2>
+    <div class="tag-description">
+        <p class="tag-discretion">- Books may have up to 20 tags each</p>
+        <br>
+        <div class="grouped-tags">
+        <p class="tag-discretion">- Any </p>
+        <p class="tag-discretion-special">£ $ ^ ` ~ % & ç [ ] { } # @ ( ) < > | \" + ? ! > . , </p>    
+        <p class="tag-discretion">commas and dots will be removed</p>
+        </div>
+        <p class="tag-discretion">- Tags should be relevant to the book</p>
+    </div>
+    <div class="added-tags">
+
+    </div>
+    <textarea id="tagInput" placeholder="Add your tag here.." maxlength="100"></textarea>
+    <div class="suggestions"></div>
+    <div id="charCounter">0 / 100</div>
+    <button id="addTagBtn">Add tag</button>
+</div>
+<!-- Book tags END  -->
 
 <!-- Add Chapter Form -->
 <div class="add-chapter-form">

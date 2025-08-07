@@ -150,7 +150,7 @@ async function createBook() {
 
   // 🛠 DEV BYPASS: Mock user if needed
   if (!user && DEV_MODE) {
-    console.warn("🔥 Dev mode active - using mock user.");
+    console.warn("Dev mode active - using mock user.");
     user = { uid: "devUser123", email: "dev@example.com" };
   }
 
@@ -166,6 +166,8 @@ async function createBook() {
     userId: user.uid,
     email: user.email,
     timestamp: new Date(),
+    isPublic: false,
+    tags: []
   };
 
   try {
