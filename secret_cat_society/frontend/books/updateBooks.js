@@ -45,7 +45,7 @@ async function cleanUpBooksAndChapters() {
         } else if (bookData.tags.length > 20) {
             // Trim the tags if somehow there are too many
             updateObj.tags = bookData.tags.slice(0, 20);
-            console.log(`✂️ Trimmed tags array to 20 items for book ${bookId}`);
+            console.log(`Trimmed tags array to 20 items for book ${bookId}`);
         }
 
         if (Object.keys(updateObj).length > 0) {

@@ -11,4 +11,6 @@ if (typeof firebaseConfig === 'undefined') {
     } else {
         console.log("Firebase already initialized.");
     }
+
+    window.db = firebase.firestore();
 }

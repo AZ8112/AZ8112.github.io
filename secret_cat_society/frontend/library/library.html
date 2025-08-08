@@ -1,54 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>library</title>
+    <meta http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self' https://www.gstatic.com https://www.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline';
+        style-src  'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline';
+        font-src   'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+        img-src    'self' data: https://firebasestorage.googleapis.com https://upload.wikimedia.org;
+        connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firebasestorage.googleapis.com;">
+ <title>Library</title>
+
     <link rel="stylesheet" href="libraryCSS.css">
+    <link rel="icon" href="./../images/mascotlogo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyAEr33Xkv6MLFddOVEXE1C0YfH3X1Bgk-c",
-            authDomain: "secretcatsociety-4b605.firebaseapp.com",
-            projectId: "secretcatsociety-4b605",
-            storageBucket: "secretcatsociety-4b605.appspot.com",
-            messagingSenderId: "264416108947",
-            appId: "1:264416108947:web:4606190d070caecb6e4866"
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 
 
-        };
-        firebase.initializeApp(firebaseConfig);
-      </script>
 
 </head>
+
 <body>
-<!-- Redirect check -->
-    <!-- <script>
-        const auth = firebase.auth();
-        auth.onAuthStateChanged(user => {
-        if (!user) {
-            window.location.href = "./../account-related/login.html"; // Redirect to login if not authenticated
-            }
-        });
-    </script> -->
+
 
     <!-- Navbar START -->
     <div class="navbar">
-        <a class="active" href="./../main.html"><i class="fa-solid fa-house"></i>    Home</a>
+        <a class="active" href="./../main.html"><i class="fa-solid fa-house"></i> Home</a>
 
         <div class="dropdown">
-            <button class="dropbtn"><i class="fa-solid fa-bookmark"></i>  Books</button>
+            <button class="dropbtn"><i class="fa-solid fa-bookmark"></i> Books</button>
             <div class="dropdown-content">
                 <a href="./../books/booksHTML.html">My Books</a>
             </div>
         </div>
 
         <div class="dropdown">
-            <button class="dropbtn"><i class="fa-solid fa-user-group"></i>   Characters</button>
+            <button class="dropbtn"><i class="fa-solid fa-user-group"></i> Characters</button>
             <div class="dropdown-content">
                 <a href="./../characters/profiles.html">Profiles</a>
                 <a href="#LINK_NEEDED_HERE">Relationships</a>
@@ -59,13 +53,14 @@
 
         <input type="text" id="search" class="navbar-search" placeholder="Search books...">
 
+        <!-- User account menu -->
         <div class="user-menu">
-        <i class="fa-solid fa-user-circle" id="userIcon"></i>
-        <div id="userDropdown" class="user-dropdown">
-          <p id="userEmail">Logged in as</p>
-          <button id="logoutBtn">Log out</button>
+            <i class="fa-solid fa-user-circle" id="userIcon"></i>
+            <div id="userDropdown" class="user-dropdown">
+                <p id="userEmail">Logged in as</p>
+                <button id="logoutBtn">Log out</button>
+            </div>
         </div>
-    </div>
     </div>
     <!-- Navbar END -->
 
@@ -83,10 +78,11 @@
         <div class="book-grid" id="libraryBookGrid"></div>
     </section>
 
-    <script src="firebase-config.js" defer></script>
-    <script src="firebase-init.js" defer></script>
+    <!-- JS Scripts -->
+    <script src="./../firebase-config.js" defer></script>
+    <script src="./../firebase-init.js" defer></script>
     <script src="libraryJS.js" defer></script>
-    <script src="./../account-related/account.js" defer></script>
-
+    <!-- <script src="./../account-related/account.js" defer></script> -->
 </body>
+
 </html>
