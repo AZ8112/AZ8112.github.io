@@ -420,10 +420,7 @@ body {
     outline: none;  /* Prevents focus outline */
 }
 
-/* Make sure the parent container is relative */
-.chapter-container {
-    position: relative;
-}
+
 
 /* Positioning the buttons freely */
 .edit-btn {
@@ -439,6 +436,11 @@ body {
 .edit-btn:hover,
 .delete-btn:hover {
     color: #00c3ff; /* CHNAGE THIIIIIIS THIAS IS SHTE  YEELLOW SHET*/
+}
+
+/* Make sure the parent container is relative */
+.chapter-container {
+    position: relative;
 }
 
 /* Popup Styles */

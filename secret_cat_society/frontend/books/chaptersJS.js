@@ -236,6 +236,8 @@ document.addEventListener("DOMContentLoaded", function () {
           const editBtn = document.createElement("button");
           const delBtn = document.createElement("button");
 
+          wrapper.className = "chapter-container"; // needed for absolute positioning
+
           title.className = "chapter-title";
           content.className = "chapter-content";
           editBtn.className = "edit-btn";
@@ -266,10 +268,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           });
 
+          // Append in the correct order so buttons are anchored to the title area
           wrapper.appendChild(title);
-          wrapper.appendChild(content);
           wrapper.appendChild(editBtn);
           wrapper.appendChild(delBtn);
+          wrapper.appendChild(content);
+
           chapterList.appendChild(wrapper);
         });
 
@@ -279,7 +283,8 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         });
       });
-  }
+}
+
 
   // Tagging system START
   const tagInput = document.getElementById("tagInput");
