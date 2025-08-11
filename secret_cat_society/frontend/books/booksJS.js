@@ -3,14 +3,14 @@ const bookList = document.getElementById("bookList");
 const coverInput = document.getElementById("coverInput");
 
 // 🛠 DEV BYPASS: Enable/disable DevMode here
-const DEV_MODE = true;
+const DEV_MODE = false;
 
 async function loadBooks() {
   let user = firebase.auth().currentUser;
 
   // 🛠 DEV BYPASS: Mock user if not authenticated and DEV_MODE is true
   if (!user && DEV_MODE) {
-    console.warn("🔥 Dev mode active - using mock user.");
+    console.warn("Dev mode active - using mock user.");
     user = { uid: "devUser123", email: "dev@example.com" };
   }
 
@@ -128,18 +128,53 @@ function showContextMenu(e, bookId, bookData, bookElement) {
     menu.remove();
   };
 
-  const publish = document.createElement("div");
-  publish.textContent = "Publish";
-  publish.onclick = async () => {
-    await db.collection("books").doc(bookId).update({ published: true });
+// Publish
+const publish = document.createElement("div");
+publish.textContent = "Publish";
+publish.onclick = async () => {
+  try {
+    await db.collection("books").doc(bookId).update({ isPublic: true });
     alert(`"${bookData.title}" published.`);
+    loadBooks();
+  } catch (err) {
+    console.error("Publish failed:", err);
+    alert("Failed to publish.");
+  } finally {
     menu.remove();
-  };
+  }
+};
 
-  menu.append(rename, del, changeCover, publish);
-  document.body.appendChild(menu);
+// Unpublish
+const unpublish = document.createElement("div");
+unpublish.textContent = "Unpublish";
+unpublish.onclick = async () => {
+  if (!bookData.isPublic) {
+    alert(`"${bookData.title}" is already unpublished.`);
+    return;
+  }
+  try {
+    await db.collection("books").doc(bookId).update({ isPublic: false });
+    alert(`"${bookData.title}" unpublished.`);
+    loadBooks();
+  } catch (err) {
+    console.error("Unpublish failed:", err);
+    alert("Failed to unpublish.");
+  } finally {
+    menu.remove();
+  }
+};
 
-  document.addEventListener("click", () => menu.remove(), { once: true });
+// Common items
+menu.append(rename, del, changeCover);
+
+if (bookData.isPublic) {
+  menu.append(unpublish);
+} else {
+  menu.append(publish);
+}
+
+document.body.appendChild(menu);
+document.addEventListener("click", () => menu.remove(), { once: true });
 }
 
 async function createBook() {
@@ -167,7 +202,7 @@ async function createBook() {
     email: user.email,
     timestamp: new Date(),
     isPublic: false,
-    tags: []
+    tags: [],
   };
 
   try {
@@ -183,7 +218,7 @@ firebase.auth().onAuthStateChanged((user) => {
   // 🛠 DEV BYPASS: Skip redirect and load with mock user
   if (user || DEV_MODE) {
     if (!user && DEV_MODE) {
-      console.warn("🔥 Dev mode active – no auth, using mock user.");
+      console.warn("Dev mode active – no auth, using mock user.");
     }
     loadBooks();
   } else {
@@ -192,13 +227,12 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 });
 
-
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   const userIcon = document.getElementById("userIcon");
   if (userIcon) {
     // Redirect to account page on click
     userIcon.addEventListener("click", function () {
-        console.log("User icon clicked, redirecting to account page.");
+      console.log("User icon clicked, redirecting to account page.");
       window.location.href = "./../account-related/accountPage.html";
     });
   }

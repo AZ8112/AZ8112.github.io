@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   // 🛠 DEV BYPASS: Enable/disable DevMode here
-  const DEV_MODE = true;
+  const DEV_MODE = false;
 
   const db = firebase.firestore();
   const urlParams = new URLSearchParams(window.location.search);
